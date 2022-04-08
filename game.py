@@ -1,14 +1,13 @@
 from PPlay.window import *
 from PPlay.sprite import *
+from classes.position import Position
+from classes.table import Table
 
-janela = Window(720, 1440)
+janela = Window(1440, 720)
 janela.set_title('Xadrez')
-close = False
-piece = Sprite('./assets/horse.png', frames=1)
 
-while not close:
-  piece.move_key_x(0.1)
-  piece.move_key_y(0.1)
-  janela.set_background_color((255,255,255))
-  piece.draw()
+table = Table((70, 70), 512)
+
+while True:
+  table.printTable()
   janela.update()
