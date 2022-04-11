@@ -11,11 +11,16 @@ while not close:
   print ("TABULEIRO ATUAL: ")
   table.print_table()
 
-  piece_entry = input("Escolha as coordenadas de uma peça (x, y): ").split(" ")
-  piece = table.findPiece((int(piece_entry[0]), int(piece_entry[1])))
+  piece = None
+  while not piece:
+    piece_entry = input("Escolha as coordenadas de uma peça (x, y): ").split(" ")
+    piece = table.findPiece((int(piece_entry[0]), int(piece_entry[1])))
+    if piece == None:
+      print("Peça não encontrada")
 
-  possibilities = piece.availableMovePositions(table)
-  print("Essas são as posições possiveis para essa peça: ", possibilities)
+  possibilities = piece.availablePositions(table)
+  print("Essas são as posições de movimento possiveis para essa peça: ", possibilities['move'])
+  print("Essas são as posições de ataque possiveis para essa peça: ", possibilities['atack'])
   try:
     position_entry = input('Insira a coordenada para se movimentar: ').split(" ")
     piece.move((int(position_entry[0]), int(position_entry[1])), table)

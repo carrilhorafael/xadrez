@@ -6,21 +6,29 @@ class Knight(Piece):
     self.image_file = './assets/' + color + 'Knight.png'
     super().__init__(self.image_file, color, initial_position)
 
-  def availableMovePositions(self, table):
-    positions = []
+  def availablePositions(self, table):
+    move_positions = []
+    atack_positions = []
+
 
     for sum_y in (-2, 2):
       for sum_x in (-1, 1):
         new_position = (self.actualPosition()[0] + sum_x, self.actualPosition()[1] + sum_y)
         other_piece = table.findPiece(new_position)
-        if (Piece.validPosition(new_position) and (other_piece == None or other_piece.color != self.color)):
-          positions.append(new_position)
+        if Piece.validPosition(new_position):
+          if other_piece == None:
+            move_positions.append(new_position)
+          elif other_piece.color != self.color:
+            atack_positions.append(new_position)
 
     for sum_x in (-2, 2):
       for sum_y in (-1, 1):
         new_position = (self.actualPosition()[0] + sum_x, self.actualPosition()[1] + sum_y)
         other_piece = table.findPiece(new_position)
-        if (Piece.validPosition(new_position) and (other_piece == None or other_piece.color != self.color)):
-          positions.append(new_position)
+        if Piece.validPosition(new_position):
+          if other_piece == None:
+            move_positions.append(new_position)
+          elif other_piece.color != self.color:
+            atack_positions.append(new_position)
 
-    return positions
+    return { 'move': move_positions, 'atack': atack_positions }

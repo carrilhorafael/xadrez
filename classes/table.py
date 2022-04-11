@@ -30,7 +30,6 @@ class Table:
       print(self.positions.index(line), end='')
       for position in line:
         print(" | ", end='')
-        # color = 'b' if position.color == 'black' else 'w'
 
         empty_position = True
         for piece in self.pieces:
