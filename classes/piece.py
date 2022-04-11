@@ -1,23 +1,26 @@
 from PPlay.sprite import Sprite
 
 class Piece(Sprite):
-  def __init__(self, image_file, initial_position):
+  def __init__(self, image_file, color, initial_position):
     super().__init__(image_file)
-    self.position = initial_position
+    self.color = color
+    self.historic_positions = [initial_position]
 
-  def move(self, new_position):
-    if (Piece.valid_position(new_position) and (new_position in self.available_move_positions())):
-      self.position = new_position
-      # atualizar a peça no tabuleiro
+  def move(self, new_position, table):
+    if (Piece.validPosition(new_position) and (new_position in self.availableMovePositions(table))):
+      self.historic_positions.append(new_position)
     else:
       raise Exception('jogada invalida')
 
-  def available_move_positions():
+  def actualPosition(self):
+    return self.historic_positions[-1]
+
+  def availableMovePositions():
     raise Exception("Não implementada")
 
-  def available_atack_positions():
+  def availableAtackPositions():
     raise Exception("Não implementada")
 
-  def valid_position(new_position):
+  def validPosition(new_position):
     return 0 <= new_position[0] <= 7 and 0 <= new_position[1] <= 7
 
