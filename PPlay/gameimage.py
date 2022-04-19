@@ -26,6 +26,8 @@ class GameImage(gameobject.GameObject):
     Creates a GameImage from the specified file.
     The width and height are obtained based on the image file.
     """
+    x: object
+
     def __init__(self, image_file):
         # Parent constructor must be called first
         gameobject.GameObject.__init__(self)
