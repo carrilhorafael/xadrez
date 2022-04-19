@@ -1,26 +1,64 @@
 from PPlay.window import *
+from PPlay.gameimage import *
+from PPlay.mouse import *
+from PPlay.keyboard import *
 from classes.table import Table
 
-janela = Window(1920, 1040)
+janela = Window(0, 0)
+fundo = GameImage('assets/fundo_madeira.jpg')
+borda = GameImage('assets/table/woodenBorderTable.png')
+
+windowWidth = fundo.width
+windowHeight = fundo.height
+tableLength = borda.width
+
+#janela = Window(1920, 1040)
+janela = Window(windowWidth, windowHeight)
 janela.set_title('Xadrez')
+janela.set_background_color([0, 0, 0])
+
+windowMidHeight = (windowHeight - tableLength) / 2
+table = Table([windowMidHeight, windowMidHeight], tableLength)
+
+mouse = Mouse()
+keyboard = Keyboard()
+
 close = False
-table = Table((300, 300))
-print (">> inicio do jogo <<")
 
+iniX = 0
+iniY = 0
 while not close:
-  print ("TABULEIRO ATUAL: ")
-  table.print_table()
+	table.printTable()
 
-  piece_entry = input("Escolha as coordenadas de uma peça (x, y): ").split(" ")
-  piece = table.findPiece((int(piece_entry[0]), int(piece_entry[1])))
+	# fundo.draw()
+	table.drawTable()
+	table.drawPieces()
 
-  possibilities = piece.availableMovePositions(table)
-  print("Essas são as posições possiveis para essa peça: ", possibilities)
-  try:
-    position_entry = input('Insira a coordenada para se movimentar: ').split(" ")
-    piece.move((int(position_entry[0]), int(position_entry[1])), table)
-  except Exception:
-    print('jogada invalida, repita')
+	janela.update()
+
+	# mouse.get_position()
+	piece_entry = tuple(map(int, input("Escolha as coordenadas de uma peça (x, y): ").split(" ")))
+	# piece_entry = table.verifyEntry()
+	piece = table.findPiece(piece_entry)
+
+	possibilities = piece.availableMovePositions(table)
+	table.drawCircles(possibilities)
+	janela.update()
+
+	print("Essas são as posições possiveis para essa peça: ", possibilities)
+	try:
+		position_entry = tuple(map(int, input('Insira a coordenada para se movimentar: ').split(" ")))
+		# position_entry = table.verifyEntry(mouse)
+		table.updatePieces(piece_entry, position_entry)
+
+		piece.move(position_entry, table)
+	# 	table.movePiece(piece.actualPosition(), position_entry)
+	except Exception:
+		print('jogada invalida, repita')
+
+	janela.update()
+
+
 
 # while not close:
 
@@ -51,3 +89,9 @@ while not close:
 #   janela.set_background_color((255,0,0))
 #   table.print_table()
 #   janela.update()
+
+'''
+REFATORAÇÕES
+- Tamanho da janela menor para caber na minha tela
+- Como acrescentei um parâmetro à classe Table, acrescentei, também, a informação de tamanho no instanciamento da mesma 
+'''
