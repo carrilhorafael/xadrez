@@ -24,8 +24,6 @@ table = Table([windowMidHeight, windowMidHeight], tableLength)
 # keyboard = janela.get_keyboard()
 
 close = False
-
-cont = 0
 while not close:
 	cont += 1
 	# table.printTable()
@@ -36,11 +34,11 @@ while not close:
 	# piece_entry = tuple(map(int, input("Escolha as coordenadas de uma peça (x, y): ").split(" ")))
 	piece_entry = table.verifyEntry(janela, None)
 	piece = table.findPiece(piece_entry)
-	# print(cont)
+	print(cont)
 
 	possibilities = piece.availableMovePositions(table)
 
-	# print("Essas são as posições possiveis para essa peça: ", possibilities)
+	print("Essas são as posições possiveis para essa peça: ", possibilities)
 	# try:
 	position_entry = table.verifyEntry(janela, possibilities)
 	table.updatePieces(piece_entry, position_entry)
