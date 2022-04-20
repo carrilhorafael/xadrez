@@ -1,6 +1,5 @@
 from PPlay.sprite import Sprite
 
-
 class Position(Sprite):
 	# Alterado
 	def __init__(self, color, position):

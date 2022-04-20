@@ -74,7 +74,7 @@ class Window():
         pygame.display.update()  # refresh
         
         for event in pygame.event.get():  # necessary to not get errors
-            if event.type == QUIT:
+            if event.type==QUIT:
                 self.close()
         self.last_time = self.curr_time  # set last frame time
         self.curr_time = pygame.time.get_ticks()  # since pygame.init()  
@@ -86,7 +86,7 @@ class Window():
 
     """Paints the screen - White - and update"""
     def clear(self):
-        self.set_background_color([255, 255, 255])
+        self.set_background_color([255,255,255])
         self.update()
 
     """

@@ -6,7 +6,7 @@ from classes.position import Position
 from classes.queen import Queen
 from classes.rook import Rook
 from PPlay.gameimage import *
-from PPlay.keyboard import *
+from PPlay.mouse import *
 
 initial_configuration = [
 	['black_rook', 'black_knight', 'black_bishop', 'black_queen', 'black_king', 'black_bishop', 'black_knight',
@@ -28,7 +28,6 @@ class Table:
 		self.x = position[0]
 		self.y = position[1]
 
-		self.squareBorderPosition = [0, 0]
 		self.positions = None
 
 		self.borderSize = 10
@@ -113,78 +112,33 @@ class Table:
 					elif piece_subclass == 'pawn':
 						self.positions[j][i].setPiece(Pawn(color, initial_position))
 
-	# Alterado
+
 	def findPiece(self, position):
-		i = position[0]
-		j = position[1]
-		if self.positions[i][j].piece:
-			if self.positions[i][j].piece.actualPosition()[0] == i \
-					and self.positions[i][j].piece.actualPosition()[1] == j:
-				return self.positions[i][j].piece
+		for i in range(0, 8, 1):
+			for j in range(0, 8, 1):
+				if self.positions[i][j].piece:
+					if self.positions[i][j].piece.actualPosition() == position:
+						return self.positions[i][j].piece
 
 
 # Novas funções, verificar utilidades e/ou junção com funções já existentes depois
 
-	def moveBorders(self, janela):
-		keyboard = Keyboard()
-		posX, posY = map(int, self.squareBorderPosition)
-
-		if keyboard.key_pressed("RIGHT"):
-			posX += 9
-			posX %= 8
-		if keyboard.key_pressed("LEFT"):
-			posX += 7
-			posX %= 8
-		if keyboard.key_pressed("UP"):
-			posY += 7
-			posY %= 8
-		if keyboard.key_pressed("DOWN"):
-			posY += 9
-			posY %= 8
-
-		janela.delay(75)
-
-		self.squareBorderPosition = [posX, posY]
-
-
-	def verifyEntry(self, janela, possibilities):
-		mouse = janela.get_mouse()
-		keyboard = janela.get_keyboard()
-
-		is_button_pressed = False
-		while not is_button_pressed:
-			self.moveBorders(janela)
-			posX, posY = map(int, self.squareBorderPosition)
-
-			self.drawTable()
-			self.drawPieces()
-			if possibilities:
-				self.drawCircles(possibilities)
-			# self.drawAll(None, borderVerifier, possibilites)
-
-			# for i in range(0, 8, 1):
-			# 	for j in range(0, 8, 1):
-					# x = self.positions[i][j].x
-					# y = self.positions[i][j].y
-					# w = self.positions[i][j].width
-					# h = self.positions[i][j].height
-					#
-					# pos = mouse.get_position()
-					# m_x = pos[0]
-					# m_y = pos[1]
-					#
-					# # if m_x >= x and m_x <= x + w and m_y >= y and m_y <= y + h:
-					# 	self.positions[i][j].drawBorder()
-					# 	if mouse.is_button_pressed(1):
-					# 		is_button_pressed = True
-					# 		coord = (i, j)
-			self.positions[posX][posY].drawBorder()
-			if keyboard.key_pressed("ENTER"):
-				is_button_pressed = True
-
-			janela.update()
-
-		return (posX, posY)
+	def verifyEntry(self):
+		l = [0, 0]
+		mouse = Mouse()
+		while not mouse.is_button_pressed(1):
+			for i in range(0, 8, 1):
+				for j in range(0, 8, 1):
+					start = [self.positions[i][j].x, self.positions[i][j].y]
+					end = [self.positions[i][j].x + self.positions[i][j].length, self.positions[i][j].y + self.positions[i][j].length]
+					print(start)
+					print(end)
+					print(mouse.get_position())
+					print('')
+					if mouse.is_over_area(start, end):
+						self.positions[i][j].border.draw()
+						if mouse.is_button_pressed(1):
+							return (i, j)
 
 
 	def updatePieces(self, old, new):
