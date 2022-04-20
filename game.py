@@ -20,45 +20,36 @@ janela.set_background_color([0, 0, 0])
 windowMidHeight = (windowHeight - tableLength) / 2
 table = Table([windowMidHeight, windowMidHeight], tableLength)
 
-mouse = Mouse()
-keyboard = Keyboard()
+# mouse = janela.get_mouse()
+# keyboard = janela.get_keyboard()
 
 close = False
 
-iniX = 0
-iniY = 0
+cont = 0
 while not close:
-	table.printTable()
+	cont += 1
+	# table.printTable()
 
-	# fundo.draw()
 	table.drawTable()
 	table.drawPieces()
 
-	janela.update()
-
-	# mouse.get_position()
-	piece_entry = tuple(map(int, input("Escolha as coordenadas de uma peça (x, y): ").split(" ")))
-	# piece_entry = table.verifyEntry()
+	# piece_entry = tuple(map(int, input("Escolha as coordenadas de uma peça (x, y): ").split(" ")))
+	piece_entry = table.verifyEntry(janela, None)
 	piece = table.findPiece(piece_entry)
+	# print(cont)
 
 	possibilities = piece.availableMovePositions(table)
-	table.drawCircles(possibilities)
-	janela.update()
 
-	print("Essas são as posições possiveis para essa peça: ", possibilities)
-	try:
-		position_entry = tuple(map(int, input('Insira a coordenada para se movimentar: ').split(" ")))
-		# position_entry = table.verifyEntry(mouse)
-		table.updatePieces(piece_entry, position_entry)
+	# print("Essas são as posições possiveis para essa peça: ", possibilities)
+	# try:
+	position_entry = table.verifyEntry(janela, possibilities)
+	table.updatePieces(piece_entry, position_entry)
 
-		piece.move(position_entry, table)
-	# 	table.movePiece(piece.actualPosition(), position_entry)
-	except Exception:
-		print('jogada invalida, repita')
+		# piece.move(position_entry, table)
+	# except Exception:
+	# 	print('jogada invalida, repita')
 
 	janela.update()
-
-
 
 # while not close:
 

@@ -51,7 +51,7 @@ class Mouse():
     """
     def is_button_pressed(self, button):
         pressed_buttons = pygame.mouse.get_pressed()
-        if(pressed_buttons[button-1] == 1):
+        if pressed_buttons[button-1]:
             return True
         else:
             return False            
