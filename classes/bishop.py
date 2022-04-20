@@ -1,5 +1,6 @@
 from classes.piece import Piece
 
+
 class Bishop(Piece):
 	def __init__(self, color, initial_position):
 		self.image_file = './assets/' + color + 'Bishop.png'

@@ -1,5 +1,6 @@
 from PPlay.sprite import Sprite
 
+
 class Piece(Sprite):
 	def __init__(self, image_file, color, initial_position):
 		super().__init__(image_file)
@@ -7,7 +8,7 @@ class Piece(Sprite):
 		self.historic_positions = [initial_position]
 
 	def move(self, new_position, table):
-		if (Piece.validPosition(new_position) and (new_position in self.availableMovePositions(table))):
+		if Piece.validPosition(new_position) and (new_position in self.availableMovePositions(table)):
 			self.historic_positions.append(new_position)
 		else:
 			raise Exception('jogada invalida')
