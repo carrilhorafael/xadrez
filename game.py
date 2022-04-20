@@ -23,24 +23,34 @@ table = Table([windowMidHeight, windowMidHeight], tableLength)
 # mouse = janela.get_mouse()
 # keyboard = janela.get_keyboard()
 
+n = -1
+while 1 != n != 0:
+	n = int(input("0 para mouse | 1 para teclado: "))
+	if n == 0:
+		is_mouse = True
+		break
+	elif n == 1:
+		is_mouse = False
+		break
+
+	print("Tente de novo!")
+
 close = False
 while not close:
-	cont += 1
 	# table.printTable()
 
 	table.drawTable()
 	table.drawPieces()
 
 	# piece_entry = tuple(map(int, input("Escolha as coordenadas de uma peça (x, y): ").split(" ")))
-	piece_entry = table.verifyEntry(janela, None)
+	piece_entry = table.verifyEntry(janela, None, is_mouse)
 	piece = table.findPiece(piece_entry)
-	print(cont)
 
 	possibilities = piece.availableMovePositions(table)
 
 	print("Essas são as posições possiveis para essa peça: ", possibilities)
 	# try:
-	position_entry = table.verifyEntry(janela, possibilities)
+	position_entry = table.verifyEntry(janela, possibilities, is_mouse)
 	table.updatePieces(piece_entry, position_entry)
 
 		# piece.move(position_entry, table)
