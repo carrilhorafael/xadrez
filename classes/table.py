@@ -147,7 +147,7 @@ class Table:
 		self.squareBorderPosition = [posX, posY]
 
 
-	def verifyEntry(self, janela, possibilities):
+	def verifyEntry(self, janela, possibilities, is_mouse):
 		mouse = janela.get_mouse()
 		keyboard = janela.get_keyboard()
 
@@ -162,25 +162,28 @@ class Table:
 				self.drawCircles(possibilities)
 			# self.drawAll(None, borderVerifier, possibilites)
 
-			# for i in range(0, 8, 1):
-			# 	for j in range(0, 8, 1):
-					# x = self.positions[i][j].x
-					# y = self.positions[i][j].y
-					# w = self.positions[i][j].width
-					# h = self.positions[i][j].height
-					#
-					# pos = mouse.get_position()
-					# m_x = pos[0]
-					# m_y = pos[1]
-					#
-					# # if m_x >= x and m_x <= x + w and m_y >= y and m_y <= y + h:
-					# 	self.positions[i][j].drawBorder()
-					# 	if mouse.is_button_pressed(1):
-					# 		is_button_pressed = True
-					# 		coord = (i, j)
-			self.positions[posX][posY].drawBorder()
-			if keyboard.key_pressed("ENTER"):
-				is_button_pressed = True
+			if is_mouse:
+				for i in range(0, 8, 1):
+					for j in range(0, 8, 1):
+						x = self.positions[i][j].x
+						y = self.positions[i][j].y
+						w = self.positions[i][j].width
+						h = self.positions[i][j].height
+
+						pos = mouse.get_position()
+						m_x = pos[0]
+						m_y = pos[1]
+
+						if m_x >= x and m_x <= x + w and m_y >= y and m_y <= y + h:
+							self.positions[i][j].drawBorder()
+							if mouse.is_button_pressed(1):
+								is_button_pressed = True
+								(posX, posY) = (i, j)
+
+			else:
+				self.positions[posX][posY].drawBorder()
+				if keyboard.key_pressed("ENTER"):
+					is_button_pressed = True
 
 			janela.update()
 
