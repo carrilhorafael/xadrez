@@ -1,10 +1,11 @@
 from classes.piece import Piece
 
-class Pawn (Piece):
+
+class Pawn(Piece):
 	def __init__(self, color, initial_position):
 		self.image_file = './assets/' + color + 'Pawn.png'
 		super().__init__(self.image_file, color, initial_position)
-		self.nome = 'pawn'
+		self.name = 'pawn'
 
 	def availableMovePositions(self, table):
 		positions = []
