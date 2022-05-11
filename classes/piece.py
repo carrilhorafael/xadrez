@@ -12,8 +12,8 @@ class Piece(Sprite):
       if (new_position in positions['move']):
         self.historic_positions.append(new_position)
       elif (new_position in positions['atack']):
-        self.historic_positions.append(new_position)
         table.pieces.remove(table.findPiece(new_position))
+        self.historic_positions.append(new_position)
     else:
       raise Exception('jogada invalida')
 

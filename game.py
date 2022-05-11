@@ -6,8 +6,10 @@ janela.set_title('Xadrez')
 close = False
 table = Table((300, 300))
 print (">> inicio do jogo <<")
+turn = "Brancas"
 
 while not close:
+  print ("*** Vez das", turn, "***")
   print ("TABULEIRO ATUAL: ")
   table.print_table()
 
@@ -24,6 +26,7 @@ while not close:
   try:
     position_entry = input('Insira a coordenada para se movimentar: ').split(" ")
     piece.move((int(position_entry[0]), int(position_entry[1])), table)
+    turn = "Brancas" if turn != "Brancas" else "Pretas"
   except Exception:
     print('jogada invalida, repita')
 

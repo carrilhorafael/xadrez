@@ -84,4 +84,5 @@ class Table:
   def findPiece(self, position):
     for piece in self.pieces:
       if piece.actualPosition() == position:
+        print(piece)
         return piece
