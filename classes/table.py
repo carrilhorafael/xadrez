@@ -81,8 +81,12 @@ class Table:
             pieces.append(Pawn(color, initial_position))
     self.pieces = pieces
 
-  def findPiece(self, position):
-    for piece in self.pieces:
-      if piece.actualPosition() == position:
-        print(piece)
-        return piece
+  def findPiece(self, position, color='both'):
+    if (color == 'both'):
+      for piece in self.pieces:
+        if piece.actualPosition() == position:
+          return piece
+    else:
+      for piece in list(filter(lambda piece: piece.color == color, self.pieces)):
+        if piece.actualPosition() == position:
+          return piece
