@@ -5,23 +5,25 @@ class Piece(Sprite):
     super().__init__(image_file)
     self.color = color
     self.historic_positions = [initial_position]
+    self.name = self.image_file.split("/")[2].split(".")[0]
 
-  def move(self, new_position, table):
+  def move(self, position_entry, table):
     positions = self.availablePositions(table)
-    if Piece.validPosition(new_position):
-      if (new_position in positions['move']):
-        self.historic_positions.append(new_position)
-      elif (new_position in positions['atack']):
-        table.pieces.remove(table.findPiece(new_position))
-        self.historic_positions.append(new_position)
+    if Piece.validPosition(position_entry):
+      position_index = list(map(lambda movement: movement[0], positions)).index(position_entry)
+      new_position = positions[position_index]
+      if (new_position[1] != None):
+        table.pieces.remove(new_position[1])
+      self.historic_positions.append(new_position[0])
+
     else:
       raise Exception('jogada invalida')
 
   def actualPosition(self):
     return self.historic_positions[-1]
 
-  def availablePositions():
-    print('Implementar ainda')
+  def availablePositionsList(self, table):
+    return
 
   def validPosition(new_position):
     return 0 <= new_position[0] <= 7 and 0 <= new_position[1] <= 7

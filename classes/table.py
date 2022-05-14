@@ -35,7 +35,7 @@ class Table:
         for piece in self.pieces:
           if piece.actualPosition() == position.position:
             empty_position = False
-            print('{:11s}'.format(piece.image_file.split("/")[2].split(".")[0]), end='')
+            print('{:11s}'.format(piece.name), end='')
             break
 
         if empty_position:
@@ -90,3 +90,6 @@ class Table:
       for piece in list(filter(lambda piece: piece.color == color, self.pieces)):
         if piece.actualPosition() == position:
           return piece
+
+  def playerPieces(self, playerColor):
+    return list(filter(lambda piece: piece.color == playerColor, self.pieces))

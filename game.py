@@ -8,10 +8,10 @@ close = False
 table = Table((300, 300))
 
 player_name = input("Digite seu nome de usuário: ")
-player_color = int(input ('Selecione a cor que pretende jogar: \n 0 - brancas | 1 - pretas\n' ))
+player_color = int(input ('Selecione a cor que pretende jogar: \n0 - brancas | 1 - pretas\n' ))
 while player_color not in [0, 1]:
   print('escolha invalida')
-  player_color = int(input ('Selecione a cor que pretende jogar: \n 0 - brancas | 1 - pretas'))
+  player_color = int(input ('Selecione a cor que pretende jogar: \n0 - brancas | 1 - pretas'))
 
 player1_color = 'black' if player_color else 'white'
 player2_color = 'white' if player_color else 'black'
@@ -21,48 +21,17 @@ players.sort(reverse=True, key=lambda player: player.color == 'white')
 turn = 0
 
 while not close:
-  print("vez de ", players[turn].name)
+  print("Vez de", players[turn].name)
+  print("Possible moves", players[turn].possibleMoviments(table))
 
   print ("TABULEIRO ATUAL: ")
   table.print_table()
 
   piece = players[turn].choosePiece(table)
   possibilities = piece.availablePositions(table)
-  print("Essas são as posições de movimento possiveis para essa peça: ", possibilities['move'])
-  print("Essas são as posições de ataque possiveis para essa peça: ", possibilities['atack'])
+  print("Essas são as posições de movimento possiveis para essa peça: ", possibilities)
   try:
-    position_entry = input('Insira a coordenada para se movimentar: ').split(" ")
-    piece.move((int(position_entry[0]), int(position_entry[1])), table)
+    players[turn].makeMove(piece, table)
     turn = not turn
   except Exception:
     print('jogada invalida, repita')
-
-# while not close:
-
-
-# table = Table((100, 50))
-# king = King('black', (4, 0))
-
-# print("posição inicial: " + str(king.position))
-# while not close:
-#   table.print_table()
-
-
-#   print("posição atual: " + str(king.position))
-
-#   print("posições possiveis: ", possibilities)
-#   try:
-#     entry = input('Insira a posição para se movimentar: ')
-#     king.move(possibilities[int(entry)])
-#   except Exception:
-#     print('jogada invalida, repita')
-
-# king.move((3, 0))
-# print("posição atual: " + str(king.position))
-# king.move((4, 0))
-# print("posição atual: " + str(king.position))
-
-# while not close:
-#   janela.set_background_color((255,0,0))
-#   table.print_table()
-#   janela.update()

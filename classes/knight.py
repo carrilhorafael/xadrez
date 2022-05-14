@@ -7,9 +7,7 @@ class Knight(Piece):
     super().__init__(self.image_file, color, initial_position)
 
   def availablePositions(self, table):
-    move_positions = []
-    atack_positions = []
-
+    return_possibilities = []
 
     for sum_y in (-2, 2):
       for sum_x in (-1, 1):
@@ -17,9 +15,9 @@ class Knight(Piece):
         other_piece = table.findPiece(new_position)
         if Piece.validPosition(new_position):
           if other_piece == None:
-            move_positions.append(new_position)
+            return_possibilities.append([new_position, other_piece])
           elif other_piece.color != self.color:
-            atack_positions.append(new_position)
+            return_possibilities.append([new_position, other_piece])
 
     for sum_x in (-2, 2):
       for sum_y in (-1, 1):
@@ -27,8 +25,8 @@ class Knight(Piece):
         other_piece = table.findPiece(new_position)
         if Piece.validPosition(new_position):
           if other_piece == None:
-            move_positions.append(new_position)
+            return_possibilities.append([new_position, other_piece])
           elif other_piece.color != self.color:
-            atack_positions.append(new_position)
+            return_possibilities.append([new_position, other_piece])
 
-    return { 'move': move_positions, 'atack': atack_positions }
+    return return_possibilities
