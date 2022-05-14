@@ -1,10 +1,10 @@
 from PPlay.window import *
 from classes.player import Player
 from classes.table import Table
+from utils.endGame import endGame
 
 janela = Window(1920, 1040)
 janela.set_title('Xadrez')
-close = False
 table = Table((300, 300))
 
 player_name = input("Digite seu nome de usuário: ")
@@ -20,9 +20,13 @@ players = [Player(False, player1_color, player_name), Player(True, player2_color
 players.sort(reverse=True, key=lambda player: player.color == 'white')
 turn = 0
 
-while not close:
+while True:
+  # Check for tie end game
+  if len(players[turn].possibleMoviments(table)) == 0:
+    endGame(0)
+    break
+
   print("Vez de", players[turn].name)
-  print("Possible moves", players[turn].possibleMoviments(table))
 
   print ("TABULEIRO ATUAL: ")
   table.print_table()
