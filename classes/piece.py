@@ -15,15 +15,11 @@ class Piece(Sprite):
       if (new_position[1] != None):
         table.pieces.remove(new_position[1])
       self.historic_positions.append(new_position[0])
-
     else:
       raise Exception('jogada invalida')
 
   def actualPosition(self):
     return self.historic_positions[-1]
-
-  def availablePositionsList(self, table):
-    return
 
   def validPosition(new_position):
     return 0 <= new_position[0] <= 7 and 0 <= new_position[1] <= 7

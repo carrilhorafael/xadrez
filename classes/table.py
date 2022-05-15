@@ -5,8 +5,9 @@ from classes.pawn import Pawn
 from classes.position import Position
 from classes.queen import Queen
 from classes.rook import Rook
+from utils.prettyOutput import *
 
-initial_configuration = [
+default_configuration = [
   ['black_rook', 'black_knight', 'black_bishop', 'black_queen', 'black_king', 'black_bishop', 'black_knight', 'black_rook'],
   ['black_pawn', 'black_pawn', 'black_pawn', 'black_pawn', 'black_pawn', 'black_pawn', 'black_pawn', 'black_pawn'],
   [],
@@ -18,14 +19,16 @@ initial_configuration = [
 ]
 
 class Table:
-  def __init__(self, self_position):
+  def __init__(self, self_position, initial_configuration=default_configuration):
     self.setInitialPositions()
-    self.setInitialPieces()
+    self.setInitialPieces(initial_configuration)
     self.self_position = self_position
 
-  def print_table(self):
+  def print_table(self, pieceSelected=None):
     print('-------------------------------------------------------------------------------------------------------------------')
-    print ('  | {:11s} | {:11s} | {:11s} | {:11s} | {:11s} | {:11s} | {:11s} | {:11s} |'.format('0', '1', '2', '3', '4', '5', '6', '7'))
+    with prettyOutput(FG_CYAN) as out:
+      out.write('  | {:11s} | {:11s} | {:11s} | {:11s} | {:11s} | {:11s} | {:11s} | {:11s} |'.format('0', '1', '2', '3',
+                                                                                                     '4', '5', '6', '7'))
     for line in self.positions:
       print(self.positions.index(line), end='')
       for position in line:
@@ -35,11 +38,29 @@ class Table:
         for piece in self.pieces:
           if piece.actualPosition() == position.position:
             empty_position = False
-            print('{:11s}'.format(piece.name), end='')
+
+            if pieceSelected != None and piece.actualPosition() in list(map(lambda p: p[0], pieceSelected.availablePositions(self))):
+              with prettyOutput(FG_RED) as out:
+                out.write('{:11s}'.format(piece.name), end='')
+              break
+
+            if piece == pieceSelected:
+              with prettyOutput(FG_GREEN) as out:
+                out.write('{:11s}'.format(piece.name), end='')
+              break
+
+            piece_color = FG_BLUE if piece.color == 'black' else FG_CYAN
+            with prettyOutput(piece_color) as out:
+              out.write('{:11s}'.format(piece.name), end='')
             break
 
         if empty_position:
-          print('{:11s}'.format("-"), end='')
+          if pieceSelected != None and position.position in list(map(lambda p: p[0], pieceSelected.availablePositions(self))):
+            with prettyOutput(FG_GREEN) as out:
+              out.write('     *     ', end='')
+          else:
+            with prettyOutput(FG_WHITE) as out:
+              out.write('     -     ', end='')
 
       print (" |")
     print('-------------------------------------------------------------------------------------------------------------------')
@@ -55,13 +76,13 @@ class Table:
 
     self.positions = positions
 
-  def setInitialPieces(self):
+  def setInitialPieces(self, initial_configuration):
     pieces = []
     for i in range(0, 8, 1):
       list = initial_configuration[i]
-      if len(list) > 0:
-        for j in range(0, 8, 1):
-          item = list[j]
+      for j in range(0, len(list), 1):
+        item = list[j]
+        if(item != None):
           splitted_str = item.split('_')
           color = splitted_str[0]
           piece_subclass = splitted_str[1]
@@ -93,3 +114,9 @@ class Table:
 
   def playerPieces(self, playerColor):
     return list(filter(lambda piece: piece.color == playerColor, self.pieces))
+
+  def kingExists(self, playerColor):
+    for piece in self.playerPieces(playerColor):
+      if (piece.name == playerColor+'King'):
+        return True
+    return False

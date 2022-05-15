@@ -5,20 +5,22 @@ from utils.endGame import endGame
 from utils.prettyOutput import *
 import time
 
+mocked_configuration = [
+  ['black_rook', 'black_knight', 'black_bishop', 'black_queen', 'black_king', 'black_bishop', 'black_knight', 'black_rook'],
+  ['black_pawn', 'black_pawn', 'black_pawn', None, 'black_pawn', 'black_pawn', 'black_pawn', 'black_pawn'],
+  [],
+  [None, None, None, 'black_pawn'],
+  [None, None, 'white_pawn'],
+  [],
+  ['white_pawn', 'white_pawn', None, 'white_pawn', 'white_pawn', 'white_pawn', 'white_pawn', 'white_pawn'],
+  ['white_rook', 'white_knight', 'white_bishop', 'white_queen', 'white_king', 'white_bishop', 'white_knight', 'white_rook']
+]
+
 janela = Window(1920, 1040)
 janela.set_title('Xadrez')
-table = Table((300, 300))
+table = Table((300, 300), initial_configuration=mocked_configuration)
 
-player_name = input("Digite seu nome de usuário: ")
-player_color = int(input ('Selecione a cor que pretende jogar: \n0 - brancas | 1 - pretas\n' ))
-while player_color not in [0, 1]:
-  print('escolha invalida')
-  player_color = int(input ('Selecione a cor que pretende jogar: \n0 - brancas | 1 - pretas'))
-
-player1_color = 'black' if player_color else 'white'
-player2_color = 'white' if player_color else 'black'
-
-players = [Player(False, player1_color, player_name), Player(True, player2_color)]
+players = [Player(True, 'white', "IA 1"), Player(True, 'black', 'IA 2')]
 players.sort(reverse=True, key=lambda player: player.color == 'white')
 turn = 0
 
@@ -49,5 +51,6 @@ while True:
   try:
     players[turn].makeMove(piece, table)
     turn = not turn
+
   except Exception:
     print('jogada invalida, repita')
