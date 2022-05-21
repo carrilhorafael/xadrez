@@ -7,17 +7,18 @@ class Player:
     self.name = name
     self.color = color
 
-  # def choosePiece(self, table):
-  #   if not self.system_controlled:
+  # Função que reune as rotinas de uma jogada, separadas por rotina da IA ou do jogador humano.
 
+  # Se for um jogador humano:
+      # Sistema pede uma posição do jogador até encontrar a peça do movimento.
+      # Sistema exibe as possibilidades de movimento da peça
+      # Sistema pede uma coordenada para movimentar
+      # Sistema tenta executar o movimento.
 
-  #   else:
-  #     piece = self.__calcBetterMovement(table)
-
-  #   if self.system_controlled:
-  #     time.sleep(0.5)
-  #   return piece
-
+  # Se for uma IA:
+      # Executa a função calcBetterMovement que retorna um par (peça, posição) para movimentar.
+      # Sistema tenta executar o movimento.
+      # Sistema entra em delay de alguns ms.
   def makeMove(self, table):
     piece = None
 
@@ -39,12 +40,14 @@ class Player:
     if self.system_controlled:
       time.sleep(0.3)
 
+  # Função que retorna o rei da cor do jogador (utilizado para facilitar as rotinas xeque e xeque-mate)
   def king(self, table):
     for piece in table.playerPieces(self.color):
       if (piece.name == self.color+'King'):
         return piece
     return None
 
+  # Função que retorna todas as possiveis movimentações de um jogador seguindo um par de (peça, lista de possiveis movimentações dessa peça)
   def possibleMovements(self, table):
     return_possibilities = []
     for piece in table.playerPieces(self.color):
@@ -53,6 +56,7 @@ class Player:
         return_possibilities.append((piece, piece_available_positions))
     return return_possibilities
 
+  # Função que verifica se o rei do jogador está sob ataque de alguma peça inimiga
   def underCheck(self, table):
     enemyColor = 1 if self.color == 'white' else 0
     enemy = table.players[enemyColor]
@@ -63,6 +67,7 @@ class Player:
         return True
     return False
 
+  # Função que retorna o melhor movimento para a IA (deve ser incrementado com a inteligencia deterministica de movimentação)
   def calcBetterMovement(self, table):
     moves = self.possibleMovements(table)
     atack_movements = []
