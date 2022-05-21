@@ -6,6 +6,8 @@ class King(Piece):
     self.points = 150
     super().__init__(self.image_file, color, position)
 
+  # Retorna um array de posição onde o primeiro indice é uma posição valida para se movimentar e o segundo indice uma peça inimiga que pode ser atacada.
+  # Usar sempre a função table#filterAvailablePositions para garantir que as possibilidades sejam filtradas pela configuração atual do tabuleiro.
   def availablePositions(self, table):
     return_possibilities = []
     for sum_y in (-1, 0, 1):
