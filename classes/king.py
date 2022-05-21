@@ -3,6 +3,7 @@ from classes.piece import Piece
 class King(Piece):
   def __init__(self, color, position):
     self.image_file = './assets/' + color + 'King.png'
+    self.points = 150
     super().__init__(self.image_file, color, position)
 
   def availablePositions(self, table):

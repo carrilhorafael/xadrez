@@ -1,3 +1,4 @@
+import pdb
 from classes.bishop import Bishop
 from classes.king import King
 from classes.knight import Knight
@@ -19,9 +20,10 @@ default_configuration = [
 ]
 
 class Table:
-  def __init__(self, self_position, initial_configuration=default_configuration):
+  def __init__(self, self_position, players, initial_configuration=default_configuration):
     self.setInitialPositions()
     self.setInitialPieces(initial_configuration)
+    self.players = players
     self.self_position = self_position
 
   def print_table(self, pieceSelected=None):
@@ -39,7 +41,7 @@ class Table:
           if piece.actualPosition() == position.position:
             empty_position = False
 
-            if pieceSelected != None and piece.actualPosition() in list(map(lambda p: p[0], pieceSelected.availablePositions(self))):
+            if pieceSelected != None and piece.actualPosition() in list(map(lambda p: p[0], self.filterAvailablePositions(pieceSelected))):
               with prettyOutput(FG_RED) as out:
                 out.write('{:11s}'.format(piece.name), end='')
               break
@@ -55,7 +57,7 @@ class Table:
             break
 
         if empty_position:
-          if pieceSelected != None and position.position in list(map(lambda p: p[0], pieceSelected.availablePositions(self))):
+          if pieceSelected != None and position.position in list(map(lambda p: p[0], self.filterAvailablePositions(pieceSelected))):
             with prettyOutput(FG_GREEN) as out:
               out.write('     *     ', end='')
           else:
@@ -115,8 +117,15 @@ class Table:
   def playerPieces(self, playerColor):
     return list(filter(lambda piece: piece.color == playerColor, self.pieces))
 
-  def kingExists(self, playerColor):
-    for piece in self.playerPieces(playerColor):
-      if (piece.name == playerColor+'King'):
-        return True
-    return False
+  def filterAvailablePositions(self, piece):
+    playerColor = 0 if piece.color == 'white' else 1
+    player = self.players[playerColor]
+    filtered_possibilities = []
+
+    for possibility in piece.availablePositions(self):
+      piece.move(possibility[0], self, ignore_check=True)
+      if not player.underCheck(self):
+        filtered_possibilities.append(possibility)
+      piece.undo(self)
+
+    return filtered_possibilities

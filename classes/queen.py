@@ -4,6 +4,7 @@ from classes.piece import Piece
 class Queen(Piece):
   def __init__(self, color, initial_position):
     self.image_file = './assets/' + color + 'Queen.png'
+    self.points = 50
     super().__init__(self.image_file, color, initial_position)
 
   def availablePositions(self, table):

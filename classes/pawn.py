@@ -4,6 +4,7 @@ from classes.piece import Piece
 class Pawn (Piece):
   def __init__(self, color, initial_position):
     self.image_file = './assets/' + color + 'Pawn.png'
+    self.points = 1
     super().__init__(self.image_file, color, initial_position)
 
   def availablePositions(self, table):
