@@ -9,9 +9,9 @@ mocked_configuration = [
   [],
   [],
   [],
-  ['white_knight'],
+  [],
   ['white_pawn', 'white_pawn', 'white_pawn', 'white_pawn', 'white_pawn', 'white_pawn', 'white_pawn', 'white_pawn'],
-  ['white_rook', None, 'white_bishop', 'white_queen', 'white_king', 'white_bishop', 'white_knight', 'white_rook']
+  ['white_rook', 'white_knight', 'white_bishop', 'white_queen', 'white_king', 'white_bishop', 'white_knight', 'white_rook']
 ]
 
 

@@ -15,7 +15,15 @@ def main(players, initial_configuration=None):
   turn = 0
 
   while True:
-    if len(players[turn].possibleMovements(table)) == 0:
+    if len(players[turn].possibleMovements(table)) == 0 and players[turn].underCheck(table):
+      endGame(1, winner=players[not turn])
+      break
+
+    if len(players[turn].possibleMovements(table)) == 0 and not players[turn].underCheck(table):
+      endGame(0)
+      break
+
+    if len(table.playerPieces(playerColor=players[turn].color)) == 1 and len(table.playerPieces(playerColor=players[turn].color)) == 1:
       endGame(0)
       break
 
@@ -32,10 +40,6 @@ def main(players, initial_configuration=None):
     table.printTable()
     try:
       players[turn].makeMove(table)
-
-      if players[not turn].king(table) == None:
-        endGame(1, winner=players[turn])
-        break
 
       turn = not turn
     except Exception:

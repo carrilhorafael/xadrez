@@ -28,6 +28,8 @@ class Piece(Sprite):
           self.historic_positions.append(position)
           return
 
+    raise Exception
+
   # Função que retorna o par (x, y) atual do historico de posições de uma peça.
   def actualPosition(self):
     return self.historic_positions[-1][0]
