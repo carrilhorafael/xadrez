@@ -38,7 +38,7 @@ class Player:
 
     piece.move(position_entry, table)
     if self.system_controlled:
-      time.sleep(0.3)
+      time.sleep(1)
 
   # Função que retorna o rei da cor do jogador (utilizado para facilitar as rotinas xeque e xeque-mate)
   def king(self, table):
