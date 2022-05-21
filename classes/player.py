@@ -6,6 +6,7 @@ class Player:
     self.system_controlled = system_controlled
     self.name = name
     self.color = color
+    self.historic_played_pieces = []
 
   # Função que reune as rotinas de uma jogada, separadas por rotina da IA ou do jogador humano.
 

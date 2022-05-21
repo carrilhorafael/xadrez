@@ -15,7 +15,6 @@ class Pawn (Piece):
         if position[0] == position_entry:
           if (position[1] != None):
             table.pieces.remove(position[1])
-
           self.historic_positions.append(position)
 
           if position[2] == "promotion" and not ignore_check:
@@ -24,14 +23,20 @@ class Pawn (Piece):
               print('escolha invalida')
               promote_piece = int(input('Escolha uma nova peça para promover:\n 0 - Rainha, 1 - Torre, 2 - Cavalo, 3 - Bispo\n'))
 
-            self.promote(table, promote_piece)
+            new_piece = self.promote(table, promote_piece)
+            playerColor = 0 if self.color == 'white' else 1
+            table.players[playerColor].historic_played_pieces.append(new_piece)
 
+            return
+
+          playerColor = 0 if self.color == 'white' else 1
+          table.players[playerColor].historic_played_pieces.append(self)
           return
 
     raise Exception
 
   def promote(self, table, promote_piece):
-    table.replacePiece(promote_piece, self)
+    return table.replacePiece(promote_piece, self)
 
 
 
@@ -49,6 +54,15 @@ class Pawn (Piece):
             return_possibilities.append([new_position, other_piece, "promotion"])
           else:
             return_possibilities.append([new_position, other_piece, None])
+
+      for i in (-1, 1):
+        new_position = (self.actualPosition()[0] + i, self.actualPosition()[1] + 1)
+        attack_position = (self.actualPosition()[0] + i, self.actualPosition()[1])
+        other_piece = table.findPiece(attack_position)
+        if other_piece!= None and other_piece.name == 'whitePawn':
+          last_played_piece = table.players[0].historic_played_pieces[-1]
+          if last_played_piece == other_piece:
+            return_possibilities.append([new_position, other_piece, "en_passant"])
 
       if (len(self.historic_positions) > 1):
         new_position = (self.actualPosition()[0], self.actualPosition()[1] + 1)
@@ -79,6 +93,15 @@ class Pawn (Piece):
             return_possibilities.append([new_position, other_piece, "promotion"])
           else:
             return_possibilities.append([new_position, other_piece, None])
+
+      for i in (-1, 1):
+        new_position = (self.actualPosition()[0] + i, self.actualPosition()[1] - 1)
+        attack_position = (self.actualPosition()[0] + i, self.actualPosition()[1])
+        other_piece = table.findPiece(attack_position)
+        if other_piece!= None and other_piece.name == 'blackPawn':
+          last_played_piece = table.players[1].historic_played_pieces[-1]
+          if last_played_piece == other_piece:
+            return_possibilities.append([new_position, other_piece, "en_passant"])
 
       if (len(self.historic_positions) > 1):
         new_position = (self.actualPosition()[0], self.actualPosition()[1] - 1)

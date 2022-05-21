@@ -32,7 +32,7 @@ class Table:
     print('-------------------------------------------------------------------------------------------------------------------')
     with prettyOutput(FG_CYAN) as out:
       out.write('  | {:11s} | {:11s} | {:11s} | {:11s} | {:11s} | {:11s} | {:11s} | {:11s} |'.format('0', '1', '2', '3',
-                                                                                                     '4', '5', '6', '7'))
+                                                                                                    '4', '5', '6', '7'))
     for line in self.positions:
       print(self.positions.index(line), end='')
       for position in line:
@@ -43,7 +43,7 @@ class Table:
           if piece.actualPosition() == position.position:
             empty_position = False
 
-            if pieceSelected != None and piece.actualPosition() in list(map(lambda p: p[0], self.filterAvailablePositions(pieceSelected))):
+            if pieceSelected != None and piece in list(map(lambda p: p[1], self.filterAvailablePositions(pieceSelected))):
               with prettyOutput(FG_RED) as out:
                 out.write('{:11s}'.format(piece.name), end='')
               break
@@ -59,9 +59,22 @@ class Table:
             break
 
         if empty_position:
-          if pieceSelected != None and position.position in list(map(lambda p: p[0], self.filterAvailablePositions(pieceSelected))):
+          def returnEmptyMovePositions(position):
+            if (position[2] != "en_passant"):
+              return position[0]
+
+          def returnEnPassantPositions(position):
+            if (position[2] == "en_passant"):
+              return position[0]
+
+          if pieceSelected != None and position.position in list(map(returnEmptyMovePositions, self.filterAvailablePositions(pieceSelected))):
             with prettyOutput(FG_GREEN) as out:
               out.write('     *     ', end='')
+
+          elif pieceSelected != None and position.position in list(map(returnEnPassantPositions, self.filterAvailablePositions(pieceSelected))):
+            with prettyOutput(FG_YELLOW) as out:
+              out.write('     *     ', end='')
+
           else:
             with prettyOutput(FG_WHITE) as out:
               out.write('     -     ', end='')
@@ -155,3 +168,4 @@ class Table:
 
     self.pieces.append(piece)
     self.pieces.remove(old_piece)
+    return piece
