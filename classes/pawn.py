@@ -24,13 +24,10 @@ class Pawn (Piece):
               promote_piece = int(input('Escolha uma nova peça para promover:\n 0 - Rainha, 1 - Torre, 2 - Cavalo, 3 - Bispo\n'))
 
             new_piece = self.promote(table, promote_piece)
-            playerColor = 0 if self.color == 'white' else 1
-            table.players[playerColor].historic_played_pieces.append(new_piece)
-
+            table.playerOfColor(self.color).historic_played_pieces.append(new_piece)
             return
 
-          playerColor = 0 if self.color == 'white' else 1
-          table.players[playerColor].historic_played_pieces.append(self)
+          table.playerOfColor(self.color).historic_played_pieces.append(self)
           return
 
     raise Exception
@@ -59,7 +56,7 @@ class Pawn (Piece):
         new_position = (self.actualPosition()[0] + i, self.actualPosition()[1] + 1)
         attack_position = (self.actualPosition()[0] + i, self.actualPosition()[1])
         other_piece = table.findPiece(attack_position)
-        if other_piece!= None and other_piece.name == 'whitePawn':
+        if other_piece != None and other_piece.name == 'whitePawn':
           last_played_piece = table.players[0].historic_played_pieces[-1]
           if last_played_piece == other_piece:
             return_possibilities.append([new_position, other_piece, "en_passant"])

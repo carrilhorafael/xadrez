@@ -9,9 +9,7 @@ class King(Piece):
   def undo(self, table):
     if self.historic_positions[-1][1] != None:
       table.pieces.append(self.historic_positions[-1][1])
-
-    playerColor = 0 if self.color == 'white' else 1
-    table.players[playerColor].historic_played_pieces.remove(self)
+    table.playerOfColor(self.color).historic_played_pieces.remove(self)
 
     if self.historic_positions[-1][2] != None:
       self.historic_positions[-1][3].undo(table)
@@ -32,8 +30,7 @@ class King(Piece):
           if (position[1] != None):
             table.pieces.remove(position[1])
 
-          playerColor = 0 if self.color == 'white' else 1
-          table.players[playerColor].historic_played_pieces.append(self)
+          table.playerOfColor(self.color).historic_played_pieces.append(self)
           self.historic_positions.append(position)
           return
 

@@ -15,7 +15,6 @@ def main(players, initial_configuration=None):
   turn = 0
 
   while True:
-    print(players[turn].historic_played_pieces)
     if len(players[turn].possibleMovements(table)) == 0 and players[turn].underCheck(table):
       endGame(1, winner=players[not turn])
       break

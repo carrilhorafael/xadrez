@@ -169,3 +169,7 @@ class Table:
     self.pieces.append(piece)
     self.pieces.remove(old_piece)
     return piece
+
+  def playerOfColor(self, color):
+    playerIndex = 1 if color == 'black' else 0
+    return self.players[playerIndex]
