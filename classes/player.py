@@ -29,7 +29,7 @@ class Player:
         if piece == None:
           print("Jogada inválida")
 
-      table.print_table(pieceSelected=piece)
+      table.printTable(pieceSelected=piece)
       position_entry = tuple(map(int, input('Insira a coordenada para se movimentar (x, y): ').split(" ")))
     else:
       better_movement = self.calcBetterMovement(table)

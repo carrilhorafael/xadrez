@@ -41,7 +41,7 @@ while True:
     with prettyOutput(FG_MAGENTA) as out:
       out.write('Jogada de ' + players[turn].name)
 
-  table.print_table()
+  table.printTable()
   try:
     players[turn].makeMove(table)
 

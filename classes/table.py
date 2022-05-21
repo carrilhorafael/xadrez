@@ -26,7 +26,9 @@ class Table:
     self.players = players
     self.self_position = self_position
 
-  def print_table(self, pieceSelected=None):
+  # Função que printa o tabuleiro atual.
+  # Caso receba uma peça selecionada, vai mostrar visualmente as possibilidades de movimento e ataque daquela peça.
+  def printTable(self, pieceSelected=None):
     print('-------------------------------------------------------------------------------------------------------------------')
     with prettyOutput(FG_CYAN) as out:
       out.write('  | {:11s} | {:11s} | {:11s} | {:11s} | {:11s} | {:11s} | {:11s} | {:11s} |'.format('0', '1', '2', '3',
@@ -67,6 +69,7 @@ class Table:
       print (" |")
     print('-------------------------------------------------------------------------------------------------------------------')
 
+  # Função que inicializa as posições de um tabuleiro em uma matriz de posições brancas e pretas.
   def setInitialPositions(self):
     positions = []
     for i in range(0, 8, 1):
@@ -78,6 +81,7 @@ class Table:
 
     self.positions = positions
 
+  # Função que inicializa as peças de um tabuleiro uma distribuição informada em initial_configuration.
   def setInitialPieces(self, initial_configuration):
     pieces = []
     for i in range(0, 8, 1):
@@ -104,19 +108,25 @@ class Table:
             pieces.append(Pawn(color, initial_position))
     self.pieces = pieces
 
+  # Retorna uma peça baseado em um par (x, y) de uma posição.
+  # É possivel limitar a cor do conjunto de peças a ser procurada, passando o parametro color como 'white' ou 'black'.
   def findPiece(self, position, color='both'):
     if (color == 'both'):
       for piece in self.pieces:
         if piece.actualPosition() == position:
           return piece
     else:
-      for piece in list(filter(lambda piece: piece.color == color, self.pieces)):
+      for piece in self.playerPieces(color):
         if piece.actualPosition() == position:
           return piece
 
+  # Retorna as peças atuais no tabuleiro de uma cor
   def playerPieces(self, playerColor):
     return list(filter(lambda piece: piece.color == playerColor, self.pieces))
 
+  # Função que limita as possibilidades de movimento de uma peça pela configuração atual do tabuleiro sob os seguintes parametros:
+    # Movimentos que coloquem seu Rei sob xeque são descartados.
+    # Caso o Rei esteja sob xeque, movimentos que não o tirem de xeque são descartados.
   def filterAvailablePositions(self, piece):
     playerColor = 0 if piece.color == 'white' else 1
     player = self.players[playerColor]
