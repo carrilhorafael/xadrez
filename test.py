@@ -4,8 +4,8 @@ from main import main
 
 
 mocked_configuration = [
-  ['black_rook', 'black_knight', 'black_bishop', 'black_queen', 'black_king', 'black_bishop', 'black_knight', 'black_rook'],
-  ['black_pawn', 'black_pawn', 'black_pawn', 'black_pawn', 'black_pawn', 'black_pawn', 'black_pawn', 'black_pawn'],
+  [None, None, 'black_pawn', 'black_queen', 'black_king', 'black_bishop', 'black_knight', 'black_rook'],
+  ['white_pawn', 'black_pawn', 'black_pawn', 'black_pawn', 'black_pawn', 'black_pawn', 'black_pawn', 'black_pawn'],
   [],
   [],
   [],
@@ -15,5 +15,5 @@ mocked_configuration = [
 ]
 
 
-players = [Player(True, 'white', 'IA 1'), Player(True, 'black', 'IA 2')]
+players = [Player(False, 'white', 'IA 1'), Player(False, 'black', 'IA 2')]
 main(players, initial_configuration=mocked_configuration)

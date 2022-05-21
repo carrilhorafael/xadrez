@@ -2,10 +2,10 @@ import pdb
 from PPlay.sprite import Sprite
 
 class Piece(Sprite):
-  def __init__(self, image_file, color, initial_position):
+  def __init__(self, image_file, color, historic_positions):
     super().__init__(image_file)
     self.color = color
-    self.historic_positions = [(initial_position, None)]
+    self.historic_positions = historic_positions
     self.name = self.image_file.split("/")[2].split(".")[0]
 
   # Função que deve ser usada para realizar a movimentação da peça para uma posição no tabuleiro
@@ -38,7 +38,14 @@ class Piece(Sprite):
   def undo(self, table):
     if self.historic_positions[-1][1] != None:
       table.pieces.append(self.historic_positions[-1][1])
+
     self.historic_positions.remove(self.historic_positions[-1])
+    if self.historic_positions[-1][2] == "promotion":
+      self.unpromote(table)
+
+
+  def unpromote(self, table):
+    table.replacePiece(-1, self)
 
   # Função de classe que verifica se uma posição é valida dentro de um tabuleiro.
   def validPosition(new_position):

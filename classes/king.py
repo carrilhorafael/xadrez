@@ -1,10 +1,10 @@
 from classes.piece import Piece
 
 class King(Piece):
-  def __init__(self, color, position):
+  def __init__(self, color, historic_positions):
     self.image_file = './assets/' + color + 'King.png'
     self.points = 150
-    super().__init__(self.image_file, color, position)
+    super().__init__(self.image_file, color, historic_positions)
 
   def undo(self, table):
     if self.historic_positions[-1][1] != None:

@@ -95,17 +95,17 @@ class Table:
           initial_position = (j, i)
 
           if piece_subclass == 'rook':
-            pieces.append(Rook(color, initial_position))
+            pieces.append(Rook(color, [(initial_position, None, None)]))
           elif piece_subclass == 'knight':
-            pieces.append(Knight(color, initial_position))
+            pieces.append(Knight(color, [(initial_position, None, None)]))
           elif piece_subclass == 'bishop':
-            pieces.append(Bishop(color, initial_position))
+            pieces.append(Bishop(color, [(initial_position, None, None)]))
           elif piece_subclass == 'queen':
-            pieces.append(Queen(color, initial_position))
+            pieces.append(Queen(color, [(initial_position, None, None)]))
           elif piece_subclass == 'king':
-            pieces.append(King(color, initial_position))
+            pieces.append(King(color, [(initial_position, None, None)]))
           elif piece_subclass == 'pawn':
-            pieces.append(Pawn(color, initial_position))
+            pieces.append(Pawn(color, [(initial_position, None, None)]))
     self.pieces = pieces
 
   # Retorna uma peça baseado em um par (x, y) de uma posição.
@@ -139,3 +139,19 @@ class Table:
       piece.undo(self)
 
     return filtered_possibilities
+
+  def replacePiece(self, piece_subclass, old_piece):
+    if piece_subclass == 0:
+      pdb.set_trace()
+      piece = Queen(old_piece.color, old_piece.historic_positions)
+    elif piece_subclass == 1:
+      piece = Rook(old_piece.color, old_piece.historic_positions)
+    elif piece_subclass == 2:
+      piece = Knight(old_piece.color, old_piece.historic_positions)
+    elif piece_subclass == 3:
+      piece = Bishop(old_piece.color, old_piece.historic_positions)
+    else:
+      piece = Pawn(old_piece.color, old_piece.historic_positions)
+
+    self.pieces.append(piece)
+    self.pieces.remove(old_piece)
