@@ -1,45 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4609644c-7ac3-49ac-8358-7b53b3d6de14" name="Changes" comment="Jogo funcionando opção mouse/teclado, com alguns bugs ainda&#10;Com mouse, injogável ainda&#10;Com teclado, 90% otimizado">
-      <change afterPath="$PROJECT_DIR$/assets/backup pieces/blackBishop.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/backup pieces/blackKing.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/backup pieces/blackKnight.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/backup pieces/blackPawn.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/backup pieces/blackQueen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/backup pieces/blackRook.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/backup pieces/whiteBishop.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/backup pieces/whiteKing.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/backup pieces/whiteKnight.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/backup pieces/whitePawn.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/backup pieces/whiteQueen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/backup pieces/whiteRook.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/borda_marrom.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/borda_tabuleiro.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/circle.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/quadrado.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/classes/front.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PPlay/window.py" beforeDir="false" afterPath="$PROJECT_DIR$/PPlay/window.py" afterDir="false" />
+    <list default="true" id="4609644c-7ac3-49ac-8358-7b53b3d6de14" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/blackBishop.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/blackBishop.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/blackKing.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/blackKing.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/blackKnight.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/blackKnight.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/blackPawn.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/blackPawn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/blackPosition.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/blackPosition.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/blackQueen.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/blackQueen.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/blackRook.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/blackRook.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/whiteBishop.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/whiteBishop.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/whiteKing.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/whiteKing.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/whiteKnight.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/whiteKnight.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/whitePawn.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/whitePawn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/whitePosition.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/whitePosition.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/whiteQueen.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/whiteQueen.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/whiteRook.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/whiteRook.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/pawn.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/pawn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/piece.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/piece.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/player.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/position.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/position.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/table.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,14 +40,14 @@
     <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/home/pedro/PycharmProjects/xadrez/assets",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/pedro/PycharmProjects/xadrez/assets&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/assets" />

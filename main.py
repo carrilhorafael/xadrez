@@ -33,10 +33,10 @@ def main(players, initial_configuration=None):
 		front.drawPositions(table.positions)
 		front.drawPieces(table.pieces)
 
-		for i in range(len(table.positions)):
-			for j in range(len(table.positions[i])):
-				front.drawBorder(table.positions[i][j].border)
-				front.drawCircle(table.positions[i][j].circle)
+		# for i in range(len(table.positions)):
+		# 	for j in range(len(table.positions[i])):
+		# 		front.drawBorder(table.positions[i][j].border)
+		# 		front.drawCircle(table.positions[i][j].circle)
 
 		janela.update()
 		if len(players[turn].possibleMovements(table)) == 0 and players[turn].underCheck(table):
