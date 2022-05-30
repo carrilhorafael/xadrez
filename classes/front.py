@@ -1,6 +1,11 @@
+from PPlay.mouse import *
+
 class Front:
-	def __init__(self):
-		pass
+	def __init__(self, mouse, keyboard):
+		self.mouse = mouse
+		self.keyboard = keyboard
+
+		self.valid = True
 
 	def setFixedPositions(self, positions, table_position):
 		for i in range(len(positions)):
@@ -36,8 +41,11 @@ class Front:
 			for j in range(len(positions[i])):
 				positions[i][j].draw()
 
-	def drawCircle(self, circle):
-		circle.draw()
+	def drawCircles(self, positions):
+		for i in range(len(positions)):
+			for j in range(len(positions[i])):
+				if positions[i][j].isCircleOn:
+					positions[i][j].circle.draw()
 
 	def drawBorder(self, border):
 		border.draw()
@@ -45,3 +53,21 @@ class Front:
 	def drawPieces(self, pieces):
 		for each in pieces:
 			each.draw()
+
+	def setCirclesOn(self, piece, table):
+		available_positions = piece.availabePositions(table)
+
+		for i in range(len(available_positions)):
+			x = available_positions[i][0]
+			y = available_positions[i][1]
+
+			table.positions[x][y].isCircleOn = True
+
+	def verifyMouse(self, janela):
+		if self.valid and self.mouse.is_button_pressed(1):
+			janela.set_background_color((255, 255, 255))
+			self.valid = False
+
+		if not self.valid and self.mouse.is_button_pressed(1):
+			janela.set_background_color((0, 0, 0))
+			self.valid = True

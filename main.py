@@ -1,29 +1,14 @@
-from PPlay.window import *
-from PPlay.sprite import *
 from classes.table import Table
 from classes.front import Front
 from utils.endGame import endGame
 from utils.prettyOutput import *
 
-def main(players, initial_configuration=None):
-	janela = Window(1300, 680)
-	janela.set_title('Xadrez')
-	janela.set_background_color((0, 0, 0))
-
+def main(janela, front, players, initial_configuration=None):
 	if initial_configuration:
 		table = Table((0, 0), players, initial_configuration)
 	else:
 		table = Table((0, 0), players)
 
-	# AREA DE TESTES
-	casa = Sprite('assets/blackPosition.jpg')
-	circle = Sprite('assets/circle.png')
-	x = casa.x + (casa.width - circle.width) / 2
-	y = casa.y + (casa.height - circle.height) / 2
-	circle.set_position(x, y)
-	#
-
-	front = Front()
 	front.setFixedPositions(table.positions, table.self_position)
 
 	turn = 0

@@ -126,7 +126,7 @@ class Table:
 	# Retorna uma peça baseado em um par (x, y) de uma posição.
 	# É possivel limitar a cor do conjunto de peças a ser procurada, passando o parametro color como 'white' ou 'black'.
 	def findPiece(self, position, color='both'):
-		if (color == 'both'):
+		if color == 'both':
 			for piece in self.pieces:
 				if piece.actualPosition() == position:
 					return piece
@@ -175,4 +175,3 @@ class Table:
 	def playerOfColor(self, color):
 		playerIndex = 1 if color == 'black' else 0
 		return self.players[playerIndex]
-
