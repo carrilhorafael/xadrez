@@ -1,5 +1,5 @@
-import pdb
 from PPlay.sprite import Sprite
+
 
 class Piece(Sprite):
 	def __init__(self, image_file, color, historic_positions):

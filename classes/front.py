@@ -1,5 +1,3 @@
-from PPlay.mouse import *
-
 class Front:
 	def __init__(self, mouse, keyboard):
 		self.mouse = mouse

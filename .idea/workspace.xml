@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4609644c-7ac3-49ac-8358-7b53b3d6de14" name="Changes" comment="Consertar posição das peças no front">
+    <list default="true" id="4609644c-7ac3-49ac-8358-7b53b3d6de14" name="Changes" comment="Front não funcional com implementações para mouse e movimentação possíveis iniciadas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/bishop.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/bishop.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/front.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/front.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/king.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/king.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/knight.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/knight.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/piece.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/piece.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/player.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/position.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/position.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/queen.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/queen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/rook.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/rook.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/table.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +51,7 @@
       <recent name="$PROJECT_DIR$/assets/backup pieces" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.game">
+  <component name="RunManager" selected="Python.test">
     <configuration name="game" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -77,7 +74,7 @@
       <method v="2" />
     </configuration>
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="xadrez" />
+      <module name="xadrez_oficial" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -168,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653863114135</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Front não funcional com implementações para mouse e movimentação possíveis iniciadas">
+      <created>1653872017532</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1653872017532</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -187,6 +191,7 @@
     <MESSAGE value="Jogo funcionando sem mouse e com teclado, com alguns bugs ainda" />
     <MESSAGE value="Jogo funcionando opção mouse/teclado, com alguns bugs ainda&#10;Com mouse, injogável ainda&#10;Com teclado, 90% otimizado" />
     <MESSAGE value="Consertar posição das peças no front" />
-    <option name="LAST_COMMIT_MESSAGE" value="Consertar posição das peças no front" />
+    <MESSAGE value="Front não funcional com implementações para mouse e movimentação possíveis iniciadas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Front não funcional com implementações para mouse e movimentação possíveis iniciadas" />
   </component>
 </project>

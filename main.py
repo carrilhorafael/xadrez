@@ -1,7 +1,7 @@
 from classes.table import Table
-from classes.front import Front
 from utils.endGame import endGame
 from utils.prettyOutput import *
+
 
 def main(janela, front, players, initial_configuration=None):
 	if initial_configuration:

@@ -19,6 +19,7 @@ default_configuration = [
 	['white_rook', 'white_knight', 'white_bishop', 'white_queen', 'white_king', 'white_bishop', 'white_knight', 'white_rook']
 ]
 
+
 class Table:
 	def __init__(self, self_position, players, initial_configuration=default_configuration):
 		self.positions = self.setInitialPositions()

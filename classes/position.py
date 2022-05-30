@@ -1,5 +1,6 @@
 from PPlay.sprite import Sprite
 
+
 class Position(Sprite):
 	def __init__(self, color, position):
 		image_file = './assets/' + color + 'Position.jpg'

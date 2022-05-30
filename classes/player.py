@@ -1,6 +1,7 @@
-import pdb
 from random import randint
 import time
+
+
 class Player:
 	def __init__(self, system_controlled, color, name="IA"):
 		self.system_controlled = system_controlled
