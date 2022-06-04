@@ -11,7 +11,9 @@ class Position(Sprite):
 		# Cada casa terá um círculo localizado no meio
 		# que só será desenhado quando aquela casa for uma opção de movimento
 		self.circle = Sprite('assets/circle.png')
+		self.attack_circle = Sprite('assets/crosshair.png')
 		self.isCircleOn = False
+		self.isUnderAttack = False
 
 		# Cada casa terá uma borda locaizada na mesma posição da casa
 		# que só será desenhado quando o mouse estiver sobre aquela casa
