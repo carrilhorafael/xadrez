@@ -21,7 +21,7 @@ class Player:
 	# Executa a função calcBetterMovement que retorna um par (peça, posição) para movimentar.
 	# Sistema tenta executar o movimento.
 	# Sistema entra em delay de alguns ms.
-	def makeMove(self, table):
+	def makeMove(self, table, front, janela):
 		piece = None
 
 		if not self.system_controlled:
@@ -32,6 +32,11 @@ class Player:
 					print("Jogada inválida")
 
 			table.printTable(pieceSelected=piece)
+
+			front.setCirclesOn(piece, table)
+			front.drawCircles(table.positions)
+			janela.update()
+
 			position_entry = tuple(map(int, input('Insira a coordenada para se movimentar (x, y): ').split(" ")))
 		else:
 			better_movement = self.calcBetterMovement(table)
