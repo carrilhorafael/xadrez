@@ -22,5 +22,5 @@ mocked_configuration = [
   ['white_rook', 'white_knight', 'white_bishop', 'white_queen', 'white_king', 'white_bishop', 'white_knight', 'white_rook']
 ]
 
-players = [Player(False, 'white', 'IA 1'), Player(False, 'black', 'IA 2')]
+players = [Player(True, 'white', 'IA 1'), Player(True, 'black', 'IA 2')]
 main(janela, front, players, initial_configuration=mocked_configuration)

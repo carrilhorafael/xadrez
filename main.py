@@ -17,6 +17,7 @@ def main(janela, front, players, initial_configuration=None):
 
 		front.drawPositions(table.positions)
 		front.drawPieces(table.pieces)
+		#front.drawCircles(table.positions)
 
 		# for i in range(len(table.positions)):
 		# 	for j in range(len(table.positions[i])):
@@ -48,7 +49,7 @@ def main(janela, front, players, initial_configuration=None):
 
 		table.printTable()
 		try:
-			players[turn].makeMove(table)
+			players[turn].makeMove(table, front, janela)
 
 			turn = not turn
 		except Exception:
