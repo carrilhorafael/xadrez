@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e68a5899-2b1d-47d0-91c1-44e2e9b7a924" name="Changes" comment="circulo cinza nas posiçoes de avanço, crosshair nas posiçoes de ataque.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/front.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/front.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/player.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +211,21 @@
       <option name="project" value="LOCAL" />
       <updated>1654365946331</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="circulo cinza nas posiçoes de avanço, crosshair nas posiçoes de ataque.">
+      <created>1654384966285</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1654384966285</updated>
+    </task>
+    <task id="LOCAL-00010" summary="circulo cinza nas posiçoes de avanço, crosshair nas posiçoes de ataque.">
+      <created>1654385007643</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1654385007643</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -250,16 +265,5 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="circulo cinza nas posiçoes de avanço, crosshair nas posiçoes de ataque." />
     <option name="LAST_COMMIT_MESSAGE" value="circulo cinza nas posiçoes de avanço, crosshair nas posiçoes de ataque." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/classes/player.py</url>
-          <line>35</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

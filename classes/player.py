@@ -26,7 +26,8 @@ class Player:
 
 		if not self.system_controlled:
 			while not piece:
-				piece_entry = tuple(map(int, input("Escolha as coordenadas de uma peça (x, y): ").split(" ")))
+				#piece_entry = tuple(map(int, input("Escolha as coordenadas de uma peça (x, y): ").split(" ")))
+				piece_entry = front.mousePositionReader(janela)
 				piece = table.findPiece(piece_entry, self.color)
 				if piece == None:
 					print("Jogada inválida")
@@ -37,7 +38,8 @@ class Player:
 			front.drawCircles(table.positions)
 			janela.update()
 
-			position_entry = tuple(map(int, input('Insira a coordenada para se movimentar (x, y): ').split(" ")))
+			#position_entry = tuple(map(int, input('Insira a coordenada para se movimentar (x, y): ').split(" ")))
+			position_entry = front.mousePositionReader(janela)
 		else:
 			better_movement = self.calcBetterMovement(table)
 			piece = better_movement[0]
