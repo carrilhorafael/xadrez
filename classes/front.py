@@ -1,9 +1,24 @@
+from PPlay.window import Window
+
+
 class Front:
 	def __init__(self, mouse, keyboard):
 		self.mouse = mouse
 		self.keyboard = keyboard
 
 		self.valid = True
+
+	def mousePositionReader(self, janela):
+		mouse_table_position = []
+		mouse = Window.get_mouse()
+		while len(mouse_table_position) < 1:
+			if (mouse.is_button_pressed(1)):  # 1 é o botão da esquerda
+				mouse_position = mouse.get_position()
+				mouse_table_position.append(mouse_position[0] // 75)
+				mouse_table_position.append(mouse_position[1] // 75)
+			# print(tuple(map(int, mouse_table_position)))
+			janela.update()
+		return tuple(map(int, mouse_table_position))
 
 	def setFixedPositions(self, positions, table_position):
 		for i in range(len(positions)):
@@ -45,14 +60,10 @@ class Front:
 			for j in range(len(positions[i])):
 				if positions[i][j].isUnderAttack:
 					positions[i][j].attack_circle.draw()
-					positions[i][j].isUnderAttack = False
 				elif positions[i][j].isCircleOn:
 					positions[i][j].circle.draw()
-					positions[i][j].isCircleOn = False
-			# 	positions[i][j].isCircleOn = False
-				# if positions[i][j].isCircleOn:
-				# 	positions[i][j].circle.draw()
-				# 	positions[i][j].isCircleOn = False
+				positions[i][j].isCircleOn = False
+				positions[i][j].isUnderAttack = False
 
 	def drawBorder(self, border):
 		border.draw()
