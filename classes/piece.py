@@ -27,8 +27,7 @@ class Piece(Sprite):
 
 					table.playerOfColor(self.color).historic_played_pieces.append(self)
 					self.historic_positions.append(position)
-					return
-
+					return self
 		raise Exception
 
 	# Função que retorna o par (x, y) atual do historico de posições de uma peça.
@@ -37,17 +36,21 @@ class Piece(Sprite):
 
 	# Função que desfaz o movimento dessa peça, e caso necessário, recoloca uma peça tomada durante o movimento.
 	def undo(self, table):
-		if self.historic_positions[-1][1] != None:
-			table.pieces.append(self.historic_positions[-1][1])
+		if len(table.playerOfColor(self.color).historic_played_pieces) > 0 and len(self.historic_positions) > 0:
+			trash = self.historic_positions[-1]
+			if trash[1] != None:
+				table.pieces.append(trash[1])
 
-		table.playerOfColor(self.color).historic_played_pieces.remove(self)
-		self.historic_positions.remove(self.historic_positions[-1])
-		if self.historic_positions[-1][2] == "promotion":
-			self.unpromote(table)
-
+			if trash[2] == "promotion":
+				new_piece = self.unpromote(table)
+				new_piece.historic_positions.remove(trash)
+			else:
+				self.historic_positions.remove(trash)
+			if table.playerOfColor(self.color).historic_played_pieces[-1] == self:
+				table.playerOfColor(self.color).historic_played_pieces.remove(self)
 
 	def unpromote(self, table):
-		table.replacePiece(-1, self)
+		return table.replacePiece(-1, self)
 
 	# Função de classe que verifica se uma posição é valida dentro de um tabuleiro.
 	def validPosition(new_position):

@@ -19,10 +19,9 @@ def main(janela, front, players, initial_configuration=None):
 		front.drawPieces(table.pieces)
 		#front.drawCircles(table.positions)
 
-		# for i in range(len(table.positions)):
-		# 	for j in range(len(table.positions[i])):
-		# 		front.drawBorder(table.positions[i][j].border)
-		# 		front.drawCircle(table.positions[i][j].circle)
+		if len(table.playerPieces(playerColor=players[turn].color)) == 1 and len(table.playerPieces(playerColor=players[not turn].color)) == 1:
+			endGame(0)
+			break
 
 		janela.update()
 		if len(players[turn].possibleMovements(table)) == 0 and players[turn].underCheck(table):
@@ -33,9 +32,6 @@ def main(janela, front, players, initial_configuration=None):
 			endGame(0)
 			break
 
-		if len(table.playerPieces(playerColor=players[turn].color)) == 1 and len(table.playerPieces(playerColor=players[turn].color)) == 1:
-			endGame(0)
-			break
 
 		with prettyOutput(FG_GREEN) as out:
 			out.write('*******************************************************************************************************************')
@@ -47,8 +43,8 @@ def main(janela, front, players, initial_configuration=None):
 			with prettyOutput(FG_MAGENTA) as out:
 				out.write('Jogada de ' + players[turn].name)
 
-		table.printTable()
 		try:
+			table.printTable()
 			players[turn].makeMove(table, front, janela)
 
 			turn = not turn

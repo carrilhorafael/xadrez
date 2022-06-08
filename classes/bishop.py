@@ -3,10 +3,14 @@
 from classes.piece import Piece
 
 class Bishop(Piece):
-	def __init__(self, color, historic_positions):
-		self.image_file = './assets/' + color + 'Bishop.png'
+	def __init__(self, *args):
 		self.points = 8
-		super().__init__(self.image_file, color, historic_positions)
+		if len(args) == 2:
+			self.image_file = './assets/' + args[0] + 'Bishop.png'
+			super().__init__(self.image_file, args[0], args[1])
+		elif len(args) == 1:
+			self.image_file = './assets/' + args[0].color + 'Bishop.png'
+			super().__init__(self.image_file, args[0].color, args[0].historic_positions)
 
 	# Retorna um array de posição onde o primeiro indice é uma posição valida para se movimentar e o segundo indice uma peça inimiga que pode ser atacada.
 	# Usar sempre a função table#filterAvailablePositions para garantir que as possibilidades sejam filtradas pela configuração atual do tabuleiro.
