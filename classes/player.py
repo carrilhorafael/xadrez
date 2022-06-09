@@ -29,8 +29,6 @@ class Player:
 				#piece_entry = tuple(map(int, input("Escolha as coordenadas de uma peça (x, y): ").split(" ")))
 				piece_entry = front.mousePositionReader(janela)
 				piece = table.findPiece(piece_entry, self.color)
-				if piece == None:
-					print("Jogada inválida")
 
 			table.printTable(pieceSelected=piece)
 

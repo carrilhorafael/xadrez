@@ -1,3 +1,5 @@
+from cmath import exp
+import pdb
 from PPlay.sprite import Sprite
 
 
@@ -32,22 +34,25 @@ class Piece(Sprite):
 
 	# Função que retorna o par (x, y) atual do historico de posições de uma peça.
 	def actualPosition(self):
-		return self.historic_positions[-1][0]
+		try:
+			return self.historic_positions[-1][0]
+		except IndexError:
+			pdb.set_trace()
 
 	# Função que desfaz o movimento dessa peça, e caso necessário, recoloca uma peça tomada durante o movimento.
 	def undo(self, table):
-		if len(table.playerOfColor(self.color).historic_played_pieces) > 0 and len(self.historic_positions) > 0:
+		if len(table.playerOfColor(self.color).historic_played_pieces) > 0:
 			trash = self.historic_positions[-1]
 			if trash[1] != None:
 				table.pieces.append(trash[1])
 
 			if trash[2] == "promotion":
 				new_piece = self.unpromote(table)
-				new_piece.historic_positions.remove(trash)
+				new_piece.historic_positions.pop()
 			else:
-				self.historic_positions.remove(trash)
+				self.historic_positions.pop()
 			if table.playerOfColor(self.color).historic_played_pieces[-1] == self:
-				table.playerOfColor(self.color).historic_played_pieces.remove(self)
+				table.playerOfColor(self.color).historic_played_pieces.pop()
 
 	def unpromote(self, table):
 		return table.replacePiece(-1, self)

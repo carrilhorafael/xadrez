@@ -23,7 +23,6 @@ def main(janela, front, players, initial_configuration=None):
 			endGame(0)
 			break
 
-		janela.update()
 		if len(players[turn].possibleMovements(table)) == 0 and players[turn].underCheck(table):
 			endGame(1, winner=players[not turn])
 			break
@@ -32,6 +31,7 @@ def main(janela, front, players, initial_configuration=None):
 			endGame(0)
 			break
 
+		janela.update()
 
 		with prettyOutput(FG_GREEN) as out:
 			out.write('*******************************************************************************************************************')

@@ -14,15 +14,15 @@ janela.set_background_color((0, 0, 0))
 front = Front(Mouse(), Keyboard())
 
 mocked_configuration = [
-  ['black_rook', 'black_knight', 'black_bishop', 'black_queen', None, 'black_bishop', None, None],
-  ['black_pawn', 'black_pawn', 'black_pawn', 'black_pawn', 'black_pawn', 'black_pawn', 'white_pawn', 'white_pawn'],
+  [None, None, 'black_bishop', 'black_queen', 'black_king', 'black_bishop', 'black_knight', 'black_rook'],
+  [None, None, 'black_pawn', 'black_pawn', 'black_pawn', 'black_pawn', 'black_pawn', 'black_pawn'],
   [],
-  ['white_king'],
+  [None, 'white_pawn'],
   [],
-  ['black_king'],
-  ['white_pawn', None, 'white_pawn', 'white_pawn', 'white_pawn', 'white_pawn', 'white_pawn', 'white_pawn'],
-  ['white_rook', None, None, None, None, None, None, 'white_rook']
+  ['white_knight', 'white_pawn'],
+  [None, 'white_pawn', 'white_pawn', 'white_pawn', 'white_pawn', 'white_pawn', None, 'white_pawn'],
+  ['white_rook', 'white_knight', 'white_bishop', 'white_queen', 'white_king', 'white_bishop', None, 'white_rook']
 ]
 
-players = [Player(True, 'white', 'IA 1'), Player(True, 'black', 'IA 2')]
+players = [Player(False, 'white', 'IA 1'), Player(False, 'black', 'IA 2')]
 main(janela, front, players, initial_configuration=mocked_configuration)

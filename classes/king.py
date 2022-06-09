@@ -1,3 +1,4 @@
+import pdb
 from classes.piece import Piece
 
 class King(Piece):
@@ -13,12 +14,12 @@ class King(Piece):
   def undo(self, table):
     if self.historic_positions[-1][1] != None:
       table.pieces.append(self.historic_positions[-1][1])
-    table.playerOfColor(self.color).historic_played_pieces.remove(self)
+    table.playerOfColor(self.color).historic_played_pieces.pop()
 
     if self.historic_positions[-1][2] != None:
-      self.historic_positions[-1][3].historic_positions.remove(self.historic_positions[-1][3].historic_positions[-1])
+      self.historic_positions[-1][3].historic_positions.pop()
 
-    self.historic_positions.remove(self.historic_positions[-1])
+    self.historic_positions.pop()
 
   def move(self, position_entry, table, ignore_check=False):
     if Piece.validPosition(position_entry):
@@ -36,8 +37,9 @@ class King(Piece):
 
           table.playerOfColor(self.color).historic_played_pieces.append(self)
           self.historic_positions.append(position)
+          return self
+    raise Exception
 
-    return self
 
 
   # Retorna um array de posição onde o primeiro indice é uma posição valida para se movimentar e o segundo indice uma peça inimiga que pode ser atacada.

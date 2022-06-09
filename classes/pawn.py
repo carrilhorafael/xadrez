@@ -36,8 +36,8 @@ class Pawn (Piece):
             return new_piece
 
           table.playerOfColor(self.color).historic_played_pieces.append(self)
-
-    return self
+          return self
+    raise Exception
 
   def promote(self, table, promote_piece):
     return table.replacePiece(promote_piece, self)
@@ -76,15 +76,21 @@ class Pawn (Piece):
             else:
               return_possibilities.append([new_position, other_piece, None])
       else:
-        for i in range(1, 3, 1):
-          new_position = (self.actualPosition()[0], self.actualPosition()[1] + i)
+        new_position = (self.actualPosition()[0], self.actualPosition()[1] + 1)
+        other_piece = table.findPiece(new_position)
+        if Piece.validPosition(new_position) and other_piece == None:
+          if new_position[1] == 7:
+            return_possibilities.append([new_position, other_piece, "promotion"])
+          else:
+            return_possibilities.append([new_position, other_piece, None])
+          new_position = (self.actualPosition()[0], self.actualPosition()[1] + 2)
           other_piece = table.findPiece(new_position)
-          if Piece.validPosition(new_position):
-            if other_piece == None:
-              if new_position[1] == 7:
-                return_possibilities.append([new_position, other_piece, "promotion"])
-              else:
-                return_possibilities.append([new_position, other_piece, None])
+          if Piece.validPosition(new_position) and other_piece == None:
+            if new_position[1] == 7:
+              return_possibilities.append([new_position, other_piece, "promotion"])
+            else:
+              return_possibilities.append([new_position, other_piece, None])
+
 
     else:
       for i in (-1, 1):
@@ -114,8 +120,14 @@ class Pawn (Piece):
           else:
             return_possibilities.append([new_position, other_piece, None])
       else:
-        for i in range(1, 3, 1):
-          new_position = (self.actualPosition()[0], self.actualPosition()[1] - i)
+        new_position = (self.actualPosition()[0], self.actualPosition()[1] - 1)
+        other_piece = table.findPiece(new_position)
+        if Piece.validPosition(new_position) and other_piece == None:
+          if new_position[1] == 0:
+            return_possibilities.append([new_position, other_piece, "promotion"])
+          else:
+            return_possibilities.append([new_position, other_piece, None])
+          new_position = (self.actualPosition()[0], self.actualPosition()[1] - 2)
           other_piece = table.findPiece(new_position)
           if Piece.validPosition(new_position) and other_piece == None:
             if new_position[1] == 0:

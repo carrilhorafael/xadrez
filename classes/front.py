@@ -1,3 +1,4 @@
+import pdb
 from PPlay.window import Window
 
 
@@ -41,14 +42,10 @@ class Front:
 			i = piece_position[0]
 			j = piece_position[1]
 
-			x_piece = positions[i][j].x + (positions[i][j].width - pieces[i].width) / 2
-			y_piece = positions[i][j].y + (positions[i][j].height - pieces[i].height) / 2
+			x_piece = positions[i][j].x + (positions[i][j].width - each.width) / 2
+			y_piece = positions[i][j].y + (positions[i][j].height - each.height) / 2
 
 			each.set_position(x_piece, y_piece)
-
-			# print(positions[i][j].x, positions[i][j].y)
-			# print(x_piece, y_piece)
-			# print()
 
 	def drawPositions(self, positions):
 		for i in range(len(positions)):
