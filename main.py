@@ -1,4 +1,5 @@
 import pdb
+from re import I
 from PPlay.keyboard import Keyboard
 from PPlay.mouse import Mouse
 from classes.end_the_game import EndTheGame
@@ -33,18 +34,6 @@ def main(janela, front, initial_configuration=None):
 		mainMenu(janela)
 		front.printTable(table)
 
-		if len(table.playerPieces(playerColor=players[turn].color)) == 1 and len(table.playerPieces(playerColor=players[not turn].color)) == 1:
-			endGame(0)
-			return 1
-
-		if len(players[turn].possibleMovements(table)) == 0 and players[turn].underCheck(table):
-			endGame(1, winner=players[not turn])
-			return 1
-
-		if len(players[turn].possibleMovements(table)) == 0 and not players[turn].underCheck(table):
-			endGame(0)
-			return 1
-
 		#restart_button.draw()
 		#if (mouse.is_over_object(restart_button) and mouse.is_button_pressed(1)):
 		#	print("ENTROU---------------------------------------------------------")
@@ -66,6 +55,13 @@ def main(janela, front, initial_configuration=None):
 
 		janela.update()
 		try:
+			if len(table.playerPieces(playerColor=players[turn].color)) == 1 and len(table.playerPieces(playerColor=players[not turn].color)) == 1:
+				raise EndTheGame(0)
+			if len(players[turn].possibleMovements(table)) == 0 and players[turn].underCheck(table):
+				raise EndTheGame(1, players[not turn])
+			if len(players[turn].possibleMovements(table)) == 0 and not players[turn].underCheck(table):
+				raise EndTheGame(0)
+
 			table.printTable()
 			players[turn].makeMove(table, front, janela, can_revert)
 
@@ -73,6 +69,12 @@ def main(janela, front, initial_configuration=None):
 		except EndTheGame as end_the_game:
 			if end_the_game.args[0] == -1:
 				return 1
-		except Exception:
-			pass
+			if end_the_game.args[0] == 0:
+				resp = front.showTied(janela)
+				return resp
+			if end_the_game.args[0] == 1:
+				resp = front.showWinner(janela, end_the_game.args[1])
+				return resp
 
+		except Exception as exception:
+			pass

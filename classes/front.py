@@ -1,5 +1,6 @@
 import pdb
 from PPlay.gameimage import GameImage
+from PPlay.sprite import Sprite
 from PPlay.window import Window
 
 FRAME_RATE = 0.8
@@ -31,7 +32,7 @@ class Front:
 
 		return mouse_position
 
-	def findClickedComponent(self, mouse_entry, table, can_revert):
+	def findClickedComponent(self, mouse_entry, table, color, can_revert):
 		if can_revert and (846 < mouse_entry[0] < 1134 and 350 < mouse_entry[1] < 400):
 			return 1
 
@@ -40,7 +41,7 @@ class Front:
 
 		position_entry = mousePositionCalculator(mouse_entry)
 
-		piece = table.findPiece(position_entry)
+		piece = table.findPiece(position_entry, color)
 		return piece
 
 	def setFixedPositions(self, positions, table_position):
@@ -119,3 +120,51 @@ class Front:
 		self.setPiecePositions(table.positions, table.pieces)
 		self.drawPositions(table.positions)
 		self.drawPieces(table.pieces)
+
+	def showTied(self, janela):
+		janela.clear()
+		while True:
+			janela.set_background_color((226, 250, 255))
+			janela.draw_text("Jogo empatado", 500, 180, size=32, color=(0,0,0), font_name="Arial", bold=False, italic=False)
+
+			restart_button = Sprite("./assets/restart_button.png")
+			restart_button.set_position(500, 355)
+			restart_button.draw()
+
+			end_game_button = Sprite("./assets/end_game_button.png")
+			end_game_button.set_position(500, 425)
+			end_game_button.draw()
+
+			mouse_position = self.mouseReader(janela)
+			if mouse_position:
+				if 500 < mouse_position[0] < 788 and 355 < mouse_position[1] < 405:
+					return 1
+				elif 500 < mouse_position[0] < 788 and 425 < mouse_position[1] < 475:
+					return -1
+
+			janela.update()
+
+	def showWinner(self, janela, winner):
+		janela.clear()
+		while True:
+			janela.set_background_color((226, 250, 255))
+			janela.draw_text("Xeque mate de " + winner.name, 500, 180, size=32, color=(0,0,0), font_name="Arial", bold=False, italic=False)
+
+			restart_button = Sprite("./assets/restart_button.png")
+			restart_button.set_position(500, 355)
+			restart_button.draw()
+
+			end_game_button = Sprite("./assets/end_game_button.png")
+			end_game_button.set_position(500, 425)
+			end_game_button.draw()
+
+			mouse_position = self.mouseReader(janela)
+			if mouse_position:
+				if 500 < mouse_position[0] < 788 and 355 < mouse_position[1] < 405:
+					return 1
+				elif 500 < mouse_position[0] < 788 and 425 < mouse_position[1] < 475:
+					return -1
+
+			janela.update()
+
+

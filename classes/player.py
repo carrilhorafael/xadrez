@@ -3,9 +3,7 @@ from random import randint
 import time
 from classes.end_the_game import EndTheGame
 from classes.front import mousePositionCalculator
-
 from classes.piece import Piece
-from utils.endGame import endGame
 
 
 class Player:
@@ -34,7 +32,7 @@ class Player:
 		if not self.system_controlled:
 			while object_clicked == None:
 				mouse_entry = front.mouseReader(janela)
-				object_clicked = front.findClickedComponent(mouse_entry, table, can_revert)
+				object_clicked = front.findClickedComponent(mouse_entry, table, self.color, can_revert)
 				if object_clicked != None:
 					if isinstance(object_clicked, Piece):
 						table.printTable(pieceSelected=object_clicked)
