@@ -9,24 +9,9 @@ from main import main
 
 janela = Window(1300, 680)
 
-players_or_ias = menu(janela)
-
-# player_name = input("Digite seu nome de usuário: ")
-# player_color = int(input('Selecione a cor que pretende jogar: \n0 - brancas | 1 - pretas\n'))
-# while player_color not in [0, 1]:
-# 	print('escolha invalida')
-# 	player_color = int(input('Selecione a cor que pretende jogar: \n0 - brancas | 1 - pretas'))
-
-player_color = 0
-
-player1_color = 'black' if player_color else 'white'
-player2_color = 'white' if player_color else 'black'
-
 front = Front(Mouse(), Keyboard())
-
-players = [Player(players_or_ias[0], player1_color, "Jogar Branco"), Player(players_or_ias[1], player2_color, 'Jogador Preto')]
-players.sort(reverse=True, key=lambda player: player.color == 'white')
 
 resp = 1
 while resp:
-  resp = main(janela, front, players)
+  janela.set_background_color((226, 250, 255))
+  resp = main(janela, front)

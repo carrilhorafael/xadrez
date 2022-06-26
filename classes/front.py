@@ -3,27 +3,43 @@ from PPlay.window import Window
 
 FRAME_RATE = 0.8
 
+def mousePositionCalculator(mouse_entry):
+	mouse_entry_x = (mouse_entry[0] - 40) // 75
+	mouse_entry_y = (mouse_entry[1] - 40) // 75
+	return (mouse_entry_x, mouse_entry_y)
 class Front:
 	def __init__(self, mouse, keyboard):
 		self.mouse = mouse
 		self.keyboard = keyboard
-
 		self.valid = True
 
-	def mousePositionReader(self, janela):
-		mouse_table_position = []
+	def mouseReader(self, janela):
+		is_clicked = False
 		mouse = Window.get_mouse()
+		mouse_position = None
 		delta_accumulator = 0.0
-		while len(mouse_table_position) < 1:
-			delta_accumulator += janela.delta_time()
+		while not is_clicked:
+			delta_accumulator += janela.delta_time() * 6
 
 			if (mouse.is_button_pressed(1)) and (delta_accumulator > FRAME_RATE): # 1 é o botão da esquerda
 				delta_accumulator = 0.0
 				mouse_position = mouse.get_position()
-				mouse_table_position.append(mouse_position[0] // 75)
-				mouse_table_position.append(mouse_position[1] // 75)
+				is_clicked = True
 			janela.update()
-		return tuple(map(int, mouse_table_position))
+
+		return mouse_position
+
+	def findClickedComponent(self, mouse_entry, table, can_revert):
+		if can_revert and (846 < mouse_entry[0] < 1134 and 350 < mouse_entry[1] < 400):
+			return 1
+
+		if 846 < mouse_entry[0] < 1134 and 430 < mouse_entry[1] < 480:
+			return 2
+
+		position_entry = mousePositionCalculator(mouse_entry)
+
+		piece = table.findPiece(position_entry)
+		return piece
 
 	def setFixedPositions(self, positions, table_position):
 		for i in range(len(positions)):
@@ -95,3 +111,8 @@ class Front:
 		if not self.valid and self.mouse.is_button_pressed(1):
 			janela.set_background_color((0, 0, 0))
 			self.valid = True
+
+	def printTable(self, table):
+		self.setPiecePositions(table.positions, table.pieces)
+		self.drawPositions(table.positions)
+		self.drawPieces(table.pieces)

@@ -1,5 +1,11 @@
+import pdb
 from random import randint
 import time
+from classes.end_the_game import EndTheGame
+from classes.front import mousePositionCalculator
+
+from classes.piece import Piece
+from utils.endGame import endGame
 
 
 class Player:
@@ -21,29 +27,41 @@ class Player:
 	# Executa a função calcBetterMovement que retorna um par (peça, posição) para movimentar.
 	# Sistema tenta executar o movimento.
 	# Sistema entra em delay de alguns ms.
-	def makeMove(self, table, front, janela):
+	def makeMove(self, table, front, janela, can_revert):
 		piece = None
+		object_clicked = None
 
 		if not self.system_controlled:
-			while not piece:
-				#piece_entry = tuple(map(int, input("Escolha as coordenadas de uma peça (x, y): ").split(" ")))
-				piece_entry = front.mousePositionReader(janela)
-				piece = table.findPiece(piece_entry, self.color)
+			while object_clicked == None:
+				mouse_entry = front.mouseReader(janela)
+				# pdb.set_trace()
+				object_clicked = front.findClickedComponent(mouse_entry, table, can_revert)
+				if object_clicked != None:
+					if isinstance(object_clicked, Piece):
+						table.printTable(pieceSelected=object_clicked)
 
-			table.printTable(pieceSelected=piece)
+						front.setCirclesOn(object_clicked, table)
+						front.drawCircles(table.positions)
+						janela.update()
 
-			front.setCirclesOn(piece, table)
-			front.drawCircles(table.positions)
-			janela.update()
+						mouse_entry = front.mouseReader(janela)
+						position_entry = mousePositionCalculator(mouse_entry)
 
-			#position_entry = tuple(map(int, input('Insira a coordenada para se movimentar (x, y): ').split(" ")))
-			position_entry = front.mousePositionReader(janela)
+						object_clicked.move(position_entry, table)
+					else:
+						if object_clicked == 1:
+							table.revert()
+							raise Exception
+						elif object_clicked == 2:
+							raise EndTheGame(-1)
+						# print('função do botão', object_clicked)
 		else:
 			better_movement = self.calcBetterMovement(table)
 			piece = better_movement[0]
 			position_entry = better_movement[1]
+			piece.move(position_entry, table)
 
-		piece.move(position_entry, table)
+
 		if self.system_controlled:
 			time.sleep(1)
 
@@ -54,6 +72,9 @@ class Player:
 				return piece
 
 		return None
+
+	def undoMove(self, table):
+		self.historic_played_pieces[-1].undo(table)
 
 	# Função que retorna todas as possiveis movimentações de um jogador seguindo um par de (peça, lista de possiveis movimentações dessa peça)
 	def possibleMovements(self, table):

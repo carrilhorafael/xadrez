@@ -5,7 +5,7 @@ from classes.front_menu import initialMenu
 FRAME_RATE = 0.8
 mouse = mouse.Mouse()
 
-def menu(janela):
+def menu(janela, front, table):
   delta_accumulator = 0.0
   initialMenu(janela)
 
@@ -30,7 +30,8 @@ def menu(janela):
   players = [False, True]
 
   while 1:
-    delta_accumulator += janela.delta_time()
+    front.printTable(table)
+    delta_accumulator += janela.delta_time() * 6
 
     if (mouse.is_over_object(white_piece_allow) and mouse.is_button_pressed(1) and (delta_accumulator > FRAME_RATE)):
       delta_accumulator = 0.0

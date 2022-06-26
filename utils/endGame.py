@@ -4,6 +4,7 @@ def endGame(result, winner=''):
   if result == 0:
     with prettyOutput(FG_CYAN) as out:
       out.write('Jogo finalizado por empate')
+      return 1
   else:
     if winner.system_controlled == True:
       with prettyOutput(FG_RED) as out:

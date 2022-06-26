@@ -21,10 +21,9 @@ default_configuration = [
 
 
 class Table:
-  def __init__(self, self_position, players, initial_configuration=default_configuration):
+  def __init__(self, self_position, initial_configuration=default_configuration):
     self.setInitialPositions()
     self.setInitialPieces(initial_configuration)
-    self.players = players
     self.self_position = self_position
 
   # Função que printa o tabuleiro atual.
@@ -173,3 +172,7 @@ class Table:
   def playerOfColor(self, color):
     playerIndex = 1 if color == 'black' else 0
     return self.players[playerIndex]
+
+  def revert(self):
+    self.players[0].undoMove(self)
+    self.players[1].undoMove(self)

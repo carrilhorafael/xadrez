@@ -1,15 +1,18 @@
+import pdb
 from PPlay.sprite import Sprite
 
 def initialMenu(janela):
   janela.set_title('Xadrez')
-  janela.set_background_color((226, 250, 255))
   janela.draw_text("XADREZ", 889, 11, size=48, color=(0,0,0), font_name="Arial", bold=False, italic=False)
   janela.draw_text("Menu Principal", 913, 115, size=18, color=(0,0,0), font_name="Arial", bold=False, italic=False)
 
 def mainMenu(janela):
-  janela.set_background_color((226, 250, 255))
   janela.draw_text("XADREZ", 889, 11, size=48, color=(0,0,0), font_name="Arial", bold=False, italic=False)
   janela.draw_text("Vez de:", 774, 180, size=18, color=(0,0,0), font_name="Arial", bold=False, italic=False)
+
+  revert_button = Sprite("./assets/revert_button.png")
+  revert_button.set_position(846, 355)
+  revert_button.draw()
 
   restart_button = Sprite("./assets/restart_button.png")
   restart_button.set_position(846, 430)
