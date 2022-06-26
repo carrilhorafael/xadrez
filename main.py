@@ -1,10 +1,8 @@
-import pdb
-from re import I
 from PPlay.keyboard import Keyboard
 from PPlay.mouse import Mouse
 from classes.end_the_game import EndTheGame
 from classes.front import Front
-from classes.front_menu import black_time_to_play, mainMenu, white_time_to_play
+from classes.front_menu import black_time_to_play, mainMenu, promoteFront, white_time_to_play
 from classes.menu import menu
 from classes.player import Player
 from classes.table import Table
@@ -31,15 +29,7 @@ def main(janela, front, initial_configuration=None):
 	turn = 0
 	while True:
 		can_revert = (players_or_ias[0] or players_or_ias[1]) and (len(players[0].historic_played_pieces) >= 1 and len(players[1].historic_played_pieces) >= 1)
-		mainMenu(janela)
-		front.printTable(table)
-
-		#restart_button.draw()
-		#if (mouse.is_over_object(restart_button) and mouse.is_button_pressed(1)):
-		#	print("ENTROU---------------------------------------------------------")
-			#players[0].historic_played_pieces = []
-			#players[1].historic_played_pieces = []
-			#return 1
+		front.rebuildScreen(table, janela, can_revert)
 
 		with prettyOutput(FG_GREEN) as out:
 			out.write('*******************************************************************************************************************')
@@ -53,7 +43,7 @@ def main(janela, front, initial_configuration=None):
 			with prettyOutput(FG_MAGENTA) as out:
 				out.write('Vez de ' + players[turn].name)
 
-		janela.update()
+
 		try:
 			if len(table.playerPieces(playerColor=players[turn].color)) == 1 and len(table.playerPieces(playerColor=players[not turn].color)) == 1:
 				raise EndTheGame(0)
@@ -75,6 +65,5 @@ def main(janela, front, initial_configuration=None):
 			if end_the_game.args[0] == 1:
 				resp = front.showWinner(janela, end_the_game.args[1])
 				return resp
-
 		except Exception as exception:
 			pass

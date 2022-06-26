@@ -17,8 +17,8 @@ mocked_configuration = [
 	[],
 	[],
 	['black_queen', 'black_bishop'],
-	['white_pawn'],
-	[None, 'white_king']
+	['black_pawn'],
+	[None, None, None, None, None, None, 'white_king']
 ]
 
 resp = 1

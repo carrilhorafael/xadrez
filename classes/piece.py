@@ -46,16 +46,17 @@ class Piece(Sprite):
 			if trash[1] != None:
 				table.pieces.append(trash[1])
 
-			if trash[2] == "promotion":
-				new_piece = self.unpromote(table)
-				new_piece.historic_positions.pop()
-			else:
-				self.historic_positions.pop()
+			# if trash[2] == "promotion":
+			# 	# pdb.set_trace()
+			# 	new_piece = self.unpromote(table)
+			# 	new_piece.historic_positions.pop()
+			# else:
+			self.historic_positions.pop()
 			if table.playerOfColor(self.color).historic_played_pieces[-1] == self:
 				table.playerOfColor(self.color).historic_played_pieces.pop()
 
-	def unpromote(self, table):
-		return table.replacePiece(-1, self)
+	# def unpromote(self, table):
+	# 	return table.replacePiece(-1, self)
 
 	# Função de classe que verifica se uma posição é valida dentro de um tabuleiro.
 	def validPosition(new_position):

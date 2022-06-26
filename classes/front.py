@@ -2,6 +2,7 @@ import pdb
 from PPlay.gameimage import GameImage
 from PPlay.sprite import Sprite
 from PPlay.window import Window
+from classes.front_menu import mainMenu
 
 FRAME_RATE = 0.8
 
@@ -33,10 +34,10 @@ class Front:
 		return mouse_position
 
 	def findClickedComponent(self, mouse_entry, table, color, can_revert):
-		if can_revert and (846 < mouse_entry[0] < 1134 and 350 < mouse_entry[1] < 400):
+		if can_revert and (846 < mouse_entry[0] < 1134 and 258 < mouse_entry[1] < 308):
 			return 1
 
-		if 846 < mouse_entry[0] < 1134 and 430 < mouse_entry[1] < 480:
+		if 846 < mouse_entry[0] < 1134 and 333 < mouse_entry[1] < 383:
 			return 2
 
 		position_entry = mousePositionCalculator(mouse_entry)
@@ -123,8 +124,8 @@ class Front:
 
 	def showTied(self, janela):
 		janela.clear()
+		janela.set_background_color((226, 250, 255))
 		while True:
-			janela.set_background_color((226, 250, 255))
 			janela.draw_text("Jogo empatado", 500, 180, size=32, color=(0,0,0), font_name="Arial", bold=False, italic=False)
 
 			restart_button = Sprite("./assets/restart_button.png")
@@ -146,8 +147,8 @@ class Front:
 
 	def showWinner(self, janela, winner):
 		janela.clear()
+		janela.set_background_color((226, 250, 255))
 		while True:
-			janela.set_background_color((226, 250, 255))
 			janela.draw_text("Xeque mate de " + winner.name, 500, 180, size=32, color=(0,0,0), font_name="Arial", bold=False, italic=False)
 
 			restart_button = Sprite("./assets/restart_button.png")
@@ -168,3 +169,9 @@ class Front:
 			janela.update()
 
 
+	def rebuildScreen(self, table, janela, can_revert):
+		janela.clear()
+		janela.set_background_color((226, 250, 255))
+		self.printTable(table)
+		mainMenu(janela, can_revert)
+		janela.update()

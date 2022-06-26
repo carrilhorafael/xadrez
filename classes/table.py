@@ -146,11 +146,10 @@ class Table:
     filtered_possibilities = []
 
     for possibility in piece.availablePositions(self):
-      piece = piece.move(possibility[0], self, ignore_check=True)
+      piece.move(possibility[0], self, ignore_check=True)
       if not player.underCheck(self):
         filtered_possibilities.append(possibility)
       piece.undo(self)
-
     return filtered_possibilities
 
   def replacePiece(self, piece_subclass, old_piece):

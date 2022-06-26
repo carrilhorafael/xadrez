@@ -3,6 +3,8 @@ from random import randint
 import time
 from classes.end_the_game import EndTheGame
 from classes.front import mousePositionCalculator
+from classes.front_menu import promoteFront
+from classes.pawn import Pawn
 from classes.piece import Piece
 
 
@@ -35,16 +37,17 @@ class Player:
 				object_clicked = front.findClickedComponent(mouse_entry, table, self.color, can_revert)
 				if object_clicked != None:
 					if isinstance(object_clicked, Piece):
-						table.printTable(pieceSelected=object_clicked)
+						piece = object_clicked
+						table.printTable(pieceSelected=piece)
 
-						front.setCirclesOn(object_clicked, table)
+						front.setCirclesOn(piece, table)
 						front.drawCircles(table.positions)
 						janela.update()
 
 						mouse_entry = front.mouseReader(janela)
 						position_entry = mousePositionCalculator(mouse_entry)
 
-						object_clicked.move(position_entry, table)
+						piece.move(position_entry, table)
 					else:
 						if object_clicked == 1:
 							table.revert()
@@ -58,8 +61,9 @@ class Player:
 			piece.move(position_entry, table)
 
 
-		if self.system_controlled:
-			time.sleep(1)
+		if isinstance(piece, Pawn) and piece.historic_positions[-1][2] == 'promotion':
+			resp = promoteFront(janela, front)
+			piece.promote(table, resp)
 
 	# Função que retorna o rei da cor do jogador (utilizado para facilitar as rotinas xeque e xeque-mate)
 	def king(self, table):
