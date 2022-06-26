@@ -71,7 +71,7 @@ def main(janela, front, initial_configuration=None):
 
 			turn = not turn
 		except EndTheGame as end_the_game:
-			if end_the_game == -1:
+			if end_the_game.args[0] == -1:
 				return 1
 		except Exception:
 			pass

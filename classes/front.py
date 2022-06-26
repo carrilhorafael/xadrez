@@ -1,4 +1,5 @@
 import pdb
+from PPlay.gameimage import GameImage
 from PPlay.window import Window
 
 FRAME_RATE = 0.8
@@ -11,6 +12,7 @@ class Front:
 	def __init__(self, mouse, keyboard):
 		self.mouse = mouse
 		self.keyboard = keyboard
+		self.background_table = GameImage('./assets/table_background.png')
 		self.valid = True
 
 	def mouseReader(self, janela):
@@ -113,6 +115,7 @@ class Front:
 			self.valid = True
 
 	def printTable(self, table):
+		self.background_table.draw()
 		self.setPiecePositions(table.positions, table.pieces)
 		self.drawPositions(table.positions)
 		self.drawPieces(table.pieces)

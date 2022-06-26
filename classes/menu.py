@@ -18,8 +18,8 @@ def menu(janela, front, table):
 
   white_piece_allow.set_position(846, 250)
   white_piece_unable.set_position(846, 250)
-  black_piece_allow.set_position(1066, 250)
-  black_piece_unable.set_position(1066, 250)
+  black_piece_allow.set_position(1006, 250)
+  black_piece_unable.set_position(1006, 250)
 
   play_button.set_position(846, 554)
 

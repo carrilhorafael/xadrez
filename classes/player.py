@@ -34,7 +34,6 @@ class Player:
 		if not self.system_controlled:
 			while object_clicked == None:
 				mouse_entry = front.mouseReader(janela)
-				# pdb.set_trace()
 				object_clicked = front.findClickedComponent(mouse_entry, table, can_revert)
 				if object_clicked != None:
 					if isinstance(object_clicked, Piece):
@@ -54,7 +53,6 @@ class Player:
 							raise Exception
 						elif object_clicked == 2:
 							raise EndTheGame(-1)
-						# print('função do botão', object_clicked)
 		else:
 			better_movement = self.calcBetterMovement(table)
 			piece = better_movement[0]
