@@ -66,6 +66,7 @@ class Player:
 
 			if not self.system_controlled:
 				resp = promoteFront(janela, front)
+				front.rebuildScreen(janela)
 
 			piece.promote(table, resp)
 

@@ -29,7 +29,8 @@ def main(janela, front, initial_configuration=None):
 	turn = 0
 	while True:
 		can_revert = (players_or_ias[0] or players_or_ias[1]) and (len(players[0].historic_played_pieces) >= 1 and len(players[1].historic_played_pieces) >= 1)
-		front.rebuildScreen(table, janela, can_revert)
+		front.printTable(table)
+		mainMenu(janela, can_revert)
 
 		with prettyOutput(FG_GREEN) as out:
 			out.write('*******************************************************************************************************************')
@@ -42,6 +43,7 @@ def main(janela, front, initial_configuration=None):
 			white_time_to_play()
 			with prettyOutput(FG_MAGENTA) as out:
 				out.write('Vez de ' + players[turn].name)
+		janela.update()
 
 
 		try:

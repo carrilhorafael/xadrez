@@ -169,9 +169,7 @@ class Front:
 			janela.update()
 
 
-	def rebuildScreen(self, table, janela, can_revert):
+	def rebuildScreen(self, janela):
 		janela.clear()
 		janela.set_background_color((226, 250, 255))
-		self.printTable(table)
-		mainMenu(janela, can_revert)
-		janela.update()
+
