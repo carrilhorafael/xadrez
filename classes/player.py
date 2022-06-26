@@ -62,8 +62,15 @@ class Player:
 
 
 		if isinstance(piece, Pawn) and piece.historic_positions[-1][2] == 'promotion':
-			resp = promoteFront(janela, front)
+			resp = 0
+
+			if not self.system_controlled:
+				resp = promoteFront(janela, front)
+
 			piece.promote(table, resp)
+
+		if self.system_controlled:
+			time.sleep(1)
 
 	# Função que retorna o rei da cor do jogador (utilizado para facilitar as rotinas xeque e xeque-mate)
 	def king(self, table):
