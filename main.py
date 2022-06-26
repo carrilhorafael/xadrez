@@ -1,9 +1,11 @@
+from classes.front_menu import black_time_to_play, mainMenu, white_time_to_play
 from classes.table import Table
 from utils.endGame import endGame
 from utils.prettyOutput import *
 
-
 def main(janela, front, players, initial_configuration=None):
+	mainMenu(janela)
+
 	if initial_configuration:
 		table = Table((0, 0), players, initial_configuration)
 	else:
@@ -17,7 +19,6 @@ def main(janela, front, players, initial_configuration=None):
 
 		front.drawPositions(table.positions)
 		front.drawPieces(table.pieces)
-		#front.drawCircles(table.positions)
 
 		if len(table.playerPieces(playerColor=players[turn].color)) == 1 and len(table.playerPieces(playerColor=players[not turn].color)) == 1:
 			endGame(0)
@@ -31,17 +32,26 @@ def main(janela, front, players, initial_configuration=None):
 			endGame(0)
 			break
 
+		#restart_button.draw()
+		#if (mouse.is_over_object(restart_button) and mouse.is_button_pressed(1)):
+		#	print("ENTROU---------------------------------------------------------")
+			#players[0].historic_played_pieces = []
+			#players[1].historic_played_pieces = []
+			#return 1
+
 		janela.update()
 
 		with prettyOutput(FG_GREEN) as out:
 			out.write('*******************************************************************************************************************')
 
-		if not players[turn].system_controlled:
+		if turn:
+			black_time_to_play()
 			with prettyOutput(FG_GREEN) as out:
 				out.write('Vez de ' + players[turn].name)
 		else:
+			white_time_to_play()
 			with prettyOutput(FG_MAGENTA) as out:
-				out.write('Jogada de ' + players[turn].name)
+				out.write('Vez de ' + players[turn].name)
 
 		try:
 			table.printTable()

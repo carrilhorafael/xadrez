@@ -1,6 +1,7 @@
 import pdb
 from PPlay.window import Window
 
+FRAME_RATE = 0.8
 
 class Front:
 	def __init__(self, mouse, keyboard):
@@ -12,12 +13,15 @@ class Front:
 	def mousePositionReader(self, janela):
 		mouse_table_position = []
 		mouse = Window.get_mouse()
+		delta_accumulator = 0.0
 		while len(mouse_table_position) < 1:
-			if (mouse.is_button_pressed(1)):  # 1 é o botão da esquerda
+			delta_accumulator += janela.delta_time()
+
+			if (mouse.is_button_pressed(1)) and (delta_accumulator > FRAME_RATE): # 1 é o botão da esquerda
+				delta_accumulator = 0.0
 				mouse_position = mouse.get_position()
 				mouse_table_position.append(mouse_position[0] // 75)
 				mouse_table_position.append(mouse_position[1] // 75)
-			# print(tuple(map(int, mouse_table_position)))
 			janela.update()
 		return tuple(map(int, mouse_table_position))
 
@@ -38,7 +42,6 @@ class Front:
 	def setPiecePositions(self, positions, pieces):
 		for each in pieces:
 			piece_position = each.actualPosition()
-			# print(piece_position)
 			i = piece_position[0]
 			j = piece_position[1]
 

@@ -1,55 +1,37 @@
-from pickle import TRUE
-from PPlay import mouse
 from PPlay.sprite import Sprite
 
-mouse = mouse.Mouse()
-
-def menu(janela):
+def initialMenu(janela):
+  janela.set_title('Xadrez')
+  janela.set_background_color((226, 250, 255))
+  janela.draw_text("XADREZ", 889, 11, size=48, color=(0,0,0), font_name="Arial", bold=False, italic=False)
   janela.draw_text("Menu Principal", 913, 115, size=18, color=(0,0,0), font_name="Arial", bold=False, italic=False)
 
-  white_piece_allow = Sprite("./assets/white_piece_allow.png")
-  white_piece_unable = Sprite("./assets/white_piece_unable.png")
-  black_piece_allow = Sprite("./assets/black_piece_allow.png")
-  black_piece_unable = Sprite("./assets/black_piece_unable.png")
+def mainMenu(janela):
+  janela.set_background_color((226, 250, 255))
+  janela.draw_text("XADREZ", 889, 11, size=48, color=(0,0,0), font_name="Arial", bold=False, italic=False)
+  janela.draw_text("Vez de:", 774, 180, size=18, color=(0,0,0), font_name="Arial", bold=False, italic=False)
 
-  play_button = Sprite("./assets/play_button.png")
+  restart_button = Sprite("./assets/restart_button.png")
+  restart_button.set_position(846, 430)
+  restart_button.draw()
 
-  white_piece_allow.set_position(846, 250)
-  white_piece_unable.set_position(846, 250)
-  black_piece_allow.set_position(1066, 250)
-  black_piece_unable.set_position(1066, 250)
+def white_time_to_play():
+  white_time_to_play = Sprite("./assets/white_time_to_play.png")
+  white_time_to_play.set_position(870, 224)
+  white_time_to_play.draw()
 
-  play_button.set_position(846, 554)
+  black_no_time_to_play = Sprite("./assets/black_no_time_to_play.png")
+  black_no_time_to_play.set_position(1010, 224)
+  black_no_time_to_play.draw()
 
-  white_piece_allow.draw()
-  black_piece_unable.draw()
-  play_button.draw()
+def black_time_to_play():
+  white_no_time_to_play = Sprite("./assets/white_no_time_to_play.png")
+  white_no_time_to_play.set_position(870, 224)
+  white_no_time_to_play.draw()
 
-  players = [False, True]
+  black_time_to_play = Sprite("./assets/black_time_to_play.png")
+  black_time_to_play.set_position(1010, 224)
+  black_time_to_play.draw()
 
-  while 1:
-
-    if (mouse.is_over_object(white_piece_allow) and mouse.is_button_pressed(1)):
-      if not players[0]:
-        players[0] = True
-        white_piece_unable.draw()
-      else:
-        players[0] = False
-        white_piece_allow.draw()
-
-    if (mouse.is_over_object(black_piece_unable) and mouse.is_button_pressed(1)):
-      if not players[1]:
-        players[1] = True
-        black_piece_unable.draw()
-      else:
-        players[1] = False
-        black_piece_allow.draw()
-
-    if (mouse.is_over_object(play_button) and mouse.is_button_pressed(1)):
-      break
-
-    janela.update()
-
-
-  janela.clear()
-  return players
+def promoteFront(janela): #IMCOMPLETA
+  janela.draw_text("PROMOVER PARA", 889, 11, size=48, color=(0,0,0), font_name="Arial", bold=False, italic=False)
